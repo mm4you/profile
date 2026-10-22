@@ -7,7 +7,7 @@ Website được phát triển trực tiếp từ bản clone của [qminh77/pro
 - Mặc định tiếng Anh ngay từ HTML ban đầu khi mở trang. Nút VI/EN chuyển toàn bộ nội dung và cập nhật `?lang=vi` / `?lang=en`; đường dẫn có ngôn ngữ rõ ràng được ưu tiên.
 - Giao diện sáng, tối và theo hệ thống; menu gọn trên điện thoại.
 - Sáu dự án: IELTS Vocabulary, InnovateX Smart Port, Drive Music, CSVC UMT, Vô Tri và Thi Thố.
-- Bộ lọc Web / Hệ thống / Trò chơi; các dự án có link repository, riêng IELTS Vocabulary có thêm link trải nghiệm trực tiếp.
+- Bộ lọc Web / Hệ thống / Trò chơi; các dự án có link repository, IELTS Vocabulary và Vô Tri có thêm link trải nghiệm trực tiếp.
 - Email có thể nhấn để liên hệ hoặc sao chép; điện thoại, GitHub và tải CV PDF gốc bằng tiếng Việt.
 - Học vấn, GPA, kỹ năng, thành tích hackathon, mục tiêu nghề nghiệp và sở thích.
 - Biểu đồ GitHub là ảnh chụp dữ liệu công khai ngày 22/10/2026, được lưu cục bộ; không phải dữ liệu realtime.
