@@ -7,7 +7,7 @@ export const identity = {
   name: 'Ưng Nhựt Khang', email: 'ungnhutkhang53@gmail.com', phone: '0393 331 566',
   tel: '+84393331566', github: 'https://github.com/mm4you', handle: 'mm4you',
 }
-export const asset = (path: string) => `/profile/${path.replace(/^\//, '')}`
+export const asset = (path: string) => `${process.env.NEXT_PUBLIC_BASE_PATH || ''}/${path.replace(/^\//, '')}`
 export const content = {
   vi: {
     projects: 'Dự án', github: 'GitHub', achievement: 'Thành tích', skills: 'Kỹ năng', about: 'Học vấn', contact: 'Liên hệ',

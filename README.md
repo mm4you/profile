@@ -12,9 +12,21 @@ Website được phát triển trực tiếp từ bản clone của [qminh77/pro
 - Học vấn, GPA, kỹ năng, thành tích hackathon, mục tiêu nghề nghiệp và sở thích.
 - Biểu đồ GitHub là ảnh chụp dữ liệu công khai ngày 22/10/2026, được lưu cục bộ; không phải dữ liệu realtime.
 
+## Tên miền riêng / Vercel
+
+Bản build mặc định chạy ở `/`, phù hợp với `https://www.ungnhutkhang.id.vn/`. File `vercel.json` cài dependencies trong `site/`, build source và xuất thư mục `site/out`. Để **Root Directory** của dự án Vercel là thư mục gốc repository.
+
+Không đặt `NEXT_PUBLIC_BASE_PATH=/profile` cho tên miền riêng. Nếu biến này đã được khai báo trong Vercel, xóa nó hoặc đặt thành chuỗi rỗng rồi redeploy. Có thể đổi địa chỉ canonical bằng `NEXT_PUBLIC_SITE_URL`.
+
 ## Triển khai GitHub Pages
 
-Bản build hoàn chỉnh đã nằm ở thư mục gốc repo, cùng `.nojekyll`. Trong **Settings → Pages**:
+Bản build hiện tại ở thư mục gốc dành cho tên miền riêng. Nếu dùng URL `mm4you.github.io/profile/` mà không có tên miền riêng, xuất lại đúng base path trước:
+
+```sh
+node scripts/build.mjs --github-pages
+```
+
+Commit và push bản xuất cùng `.nojekyll`. Trong **Settings → Pages**:
 
 1. Chọn **Deploy from a branch**.
 2. Chọn nhánh **main**, thư mục **/ (root)**.
@@ -33,13 +45,12 @@ npm --prefix site ci
 npm --prefix site run dev -- --port 8080
 ```
 
-Mở http://localhost:8080/profile/ vì ứng dụng dùng base path `/profile`.
+Mở http://localhost:8080/. Base path mặc định là `/`, giống tên miền riêng.
 
 ## Cập nhật bản triển khai
 
 ```sh
-npm --prefix site run build
-node scripts/export-pages.mjs
+node scripts/build.mjs
 ```
 
 Commit cả source và các file build ở thư mục gốc, rồi push lên `main`. Thư mục `site/.next`, `site/out` và `node_modules` được bỏ qua bởi Git.
@@ -47,7 +58,7 @@ Commit cả source và các file build ở thư mục gốc, rồi push lên `ma
 - `site/lib/profile.ts`: nội dung hai ngôn ngữ và danh sách dự án.
 - `site/components/`: các phần giao diện từ mẫu đã được cá nhân hóa.
 - `site/public/`: ảnh chân dung, biểu đồ hoạt động và CV PDF.
-- `site/next.config.ts`: static export và đường dẫn `/profile`.
+- `site/next.config.ts`: static export; `NEXT_PUBLIC_BASE_PATH` mặc định rỗng cho tên miền riêng.
 
 Có thể tải lại dữ liệu biểu đồ bằng `python scripts/update-github-activity.py`; khi cập nhật vào một ngày khác, cập nhật ngày hiển thị trong `site/lib/profile.ts` trước khi build.
 
