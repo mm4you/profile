@@ -94,6 +94,6 @@ export function getProjects(lang: Language): Project[] {
     { id: 'thitho', title: vi ? 'Thi Thố — Đường lên đỉnh tri thức' : 'Thi Tho — Live Quiz Gameshow', role: vi ? 'Hệ thống gameshow thời gian thực' : 'Realtime quiz gameshow system', period: '', category: 'system',
       summary: vi ? 'Hệ thống thi đấu kiến thức cho bốn người chơi, có bảng điều khiển MC/giám khảo và màn hình trình chiếu sân khấu.' : 'A four-player quiz competition system with an MC/judge control panel and a stage display.',
       highlights: vi ? ['Đồng bộ câu trả lời, đồng hồ và điểm số qua Supabase Realtime Broadcast.', 'Hỗ trợ trắc nghiệm, tự luận, bấm chuông và chấm điểm tự động hoặc thủ công.', 'Màn hình sân khấu có hiệu ứng âm thanh, mở đáp án và hiển thị kết quả.'] : ['Answers, countdowns and scores synchronized through Supabase Realtime Broadcast.', 'Multiple-choice, written-answer and buzzer modes, with automatic or manual scoring.', 'A stage display with sound effects, answer reveals and results.'],
-      tech: ['Next.js', 'TypeScript', 'Supabase Realtime', 'Tailwind CSS', 'Framer Motion'], github: 'https://github.com/mm4you/thitho' },
+      tech: ['Next.js', 'TypeScript', 'Supabase Realtime', 'Tailwind CSS', 'Framer Motion'], github: 'https://github.com/mm4you/thitho', live: 'https://thitho.vercel.app/' },
   ]
 }
