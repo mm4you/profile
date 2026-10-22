@@ -1,6 +1,6 @@
 # Ưng Nhựt Khang — CV
 
-Website CV có đầy đủ nội dung tiếng Việt và tiếng Anh, học vấn, kỹ năng, dự án và liên hệ. Bố cục hai cột trên desktop, một cột trên điện thoại, không hiển thị ảnh đại diện. Viết bằng HTML, CSS và JavaScript thuần, không cần cài thư viện hay build.
+Website CV có đầy đủ nội dung tiếng Việt và tiếng Anh, học vấn, kỹ năng, dự án và liên hệ. Bố cục hai cột trên desktop, một cột trên điện thoại, ảnh chân dung nhỏ cạnh tên. Viết bằng HTML, CSS và JavaScript thuần, không cần cài thư viện hay build.
 
 ## Xem trên máy
 
@@ -38,6 +38,6 @@ Không cần GitHub Actions hoặc bước build. Mọi đường dẫn tài ngu
 - `index.html`: CV tiếng Việt, thông tin liên hệ và liên kết dự án.
 - `script.js`: bản dịch tiếng Anh và chuyển ngôn ngữ.
 - `style.css`: giao diện và bố cục in.
-- `assets/`: favicon, font chữ và CV PDF gốc (PDF giữ nguyên ảnh chân dung như bản được cung cấp).
+- `assets/`: ảnh chân dung, favicon, font chữ và CV PDF gốc.
 
 Thông tin cá nhân, học vấn và kỹ năng được lấy từ CV do chủ hồ sơ cung cấp. Mô tả dự án được đối chiếu với README GitHub. Drive Music dùng công nghệ hiện tại theo README của dự án; PDF gốc giữ nguyên nội dung được cung cấp.

@@ -28,12 +28,13 @@ nav a:hover { color: var(--accent); }
 .resume { width: min(1240px, calc(100% - 64px)); margin: 0 auto; }
 .intro-grid { display: grid; grid-template-columns: .9fr 1.1fr; gap: 48px; padding: 48px 0 44px; }
 .intro-profile { padding-right: 12px; }
-.profile { margin-bottom: 22px; }
+.profile { display: grid; grid-template-columns: 76px minmax(0, 1fr); column-gap: 18px; align-items: center; margin-bottom: 22px; }
+.portrait { display: block; width: 76px; height: 96px; object-fit: cover; object-position: 50% 35%; border-radius: 6px; }
 h1 { color: var(--ink); font-size: 27px; font-weight: 600; letter-spacing: -.045em; line-height: 1.4; margin-bottom: 7px; }
 .identity { display: flex; flex-direction: column; }
 .role { order: 1; color: var(--ink); font-size: 13px; font-weight: 500; margin-bottom: 3px; }
 .specialization { order: 2; color: var(--muted); font-size: 11px; max-width: 440px; text-wrap: pretty; }
-.contact-details { order: 3; margin-top: 15px; font-style: normal; font-size: 10px; display: flex; flex-wrap: wrap; column-gap: 18px; row-gap: 3px; color: var(--muted); }
+.contact-details { grid-column: 1 / -1; margin-top: 18px; font-style: normal; font-size: 10px; display: flex; flex-wrap: wrap; column-gap: 18px; row-gap: 3px; color: var(--muted); }
 .contact-details strong { font-weight: 500; color: var(--body); }
 .contact-details .wide { flex-basis: 100%; }
 #objective h2 { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
@@ -119,6 +120,8 @@ dd + dt { margin-top: 12px; }
   .contact-links { grid-template-columns: 1fr; gap: 15px; }
 }
 @media (max-width: 380px) {
+  .profile { grid-template-columns: 64px minmax(0, 1fr); column-gap: 14px; }
+  .portrait { width: 64px; height: 82px; }
   .resume, .page-footer { width: calc(100% - 36px); }
   .site-header { padding-inline: 18px; }
   h1 { font-size: 25px; }
@@ -137,7 +140,8 @@ dd + dt { margin-top: 12px; }
   .site-header, .page-footer, .skip-link, .profile-actions, .github-panel, .availability { display: none; }
   .resume { width: 100%; margin: 0; }
   .intro-grid { display: block; padding: 0 0 16px; }
-  .profile { margin-bottom: 12px; }
+  .profile { grid-template-columns: 60px minmax(0, 1fr); column-gap: 14px; margin-bottom: 12px; }
+  .portrait { width: 60px; height: 76px; border-radius: 4px; }
   h1 { font-size: 22pt; }
   .role { font-size: 10pt; }
   .specialization, .contact-details, #objective p { font-size: 8pt; }
