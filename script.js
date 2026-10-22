@@ -1,6 +1,15 @@
 'use strict';
 
 const english = {
+  navProjects: 'Projects', navEducation: 'Education', navSkills: 'Skills', navContact: 'Contact',
+  themeLight: 'Light theme', themeDark: 'Dark theme',
+  emailAction: 'Send email ↗', availability: 'Seeking a web development internship',
+  githubHeading: 'GitHub & source code', githubIntro: 'Learning through products that can be used every day.',
+  repoIelts: 'IELTS vocabulary with SRS, practice games and progress tracking.',
+  repoPort: 'Port entry scheduling, operations coordination and green credit rewards.',
+  repoMusic: 'A FLAC web music player with installable PWA support.',
+  repoCsvc: 'A team project for facilities management at UMT.',
+  achievementHeading: 'Featured achievement', awardDetail: 'Semifinalist · Smart port logistics project',
   skip: 'Skip to CV',
   print: 'Print CV',
   download: 'Download CV (PDF · Vietnamese)',
@@ -49,6 +58,7 @@ const english = {
 };
 const labels = {
   vi: {
+    navigation: 'Điều hướng',
     toolbar: 'Tùy chọn CV', language: 'Ngôn ngữ',
     portrait: 'Ảnh chân dung Ưng Nhựt Khang',
     ieltsSource: 'Mã nguồn IELTS Vocabulary trên GitHub (mở tab mới)',
@@ -57,6 +67,7 @@ const labels = {
     csvcSource: 'Kho mã nguồn riêng tư CSVC UMT trên GitHub (cần quyền truy cập, mở tab mới)'
   },
   en: {
+    navigation: 'Navigation',
     toolbar: 'CV options', language: 'Language',
     portrait: 'Portrait of Ưng Nhựt Khang',
     ieltsSource: 'IELTS Vocabulary source code on GitHub (opens in a new tab)',
@@ -67,6 +78,23 @@ const labels = {
 };
 const translatedNodes = [...document.querySelectorAll('[data-i18n]')];
 const vietnamese = Object.fromEntries(translatedNodes.map(node => [node.dataset.i18n, node.textContent]));
+vietnamese.themeDark = 'Giao diện tối';
+function updateThemeButton() {
+  const button = document.querySelector('#theme');
+  const key = document.documentElement.dataset.theme === 'light' ? 'themeDark' : 'themeLight';
+  button.dataset.i18n = key;
+  button.textContent = (document.documentElement.lang === 'en' ? english : vietnamese)[key];
+}
+function setTheme(theme) {
+  document.documentElement.dataset.theme = theme === 'light' ? 'light' : 'dark';
+  document.querySelector('meta[name="theme-color"]').content = theme === 'light' ? '#fafaf9' : '#0e1115';
+  updateThemeButton();
+  try { localStorage.setItem('cv-theme', document.documentElement.dataset.theme); } catch { /* Theme remains usable without storage. */ }
+}
+document.querySelector('#theme').addEventListener('click', () => setTheme(document.documentElement.dataset.theme === 'light' ? 'dark' : 'light'));
+let initialTheme = 'dark';
+try { initialTheme = localStorage.getItem('cv-theme') || 'dark'; } catch { /* Default to dark. */ }
+setTheme(initialTheme);
 const descriptions = {
   vi: 'CV của Ưng Nhựt Khang — sinh viên Kỹ thuật phần mềm tại UMT, Web Developer. Học vấn, kỹ năng, dự án và thông tin liên hệ.',
   en: 'CV of Ưng Nhựt Khang — Software Engineering student at UMT and Web Developer. Education, skills, featured projects and contact details.'
@@ -80,6 +108,7 @@ function setLanguage(language) {
   document.querySelectorAll('[data-alt]').forEach(node => { node.alt = labels[lang][node.dataset.alt]; });
   document.querySelectorAll('[data-lang]').forEach(button => button.setAttribute('aria-pressed', String(button.dataset.lang === lang)));
   document.querySelector('meta[name="description"]').content = descriptions[lang];
+  updateThemeButton();
   try { localStorage.setItem('cv-language', lang); } catch { /* Language still works when browser storage is unavailable. */ }
   try {
     const url = new URL(window.location.href);

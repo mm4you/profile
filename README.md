@@ -1,6 +1,6 @@
 # Ưng Nhựt Khang — CV
 
-Website CV đơn giản, có đầy đủ nội dung tiếng Việt và tiếng Anh, ảnh chân dung, học vấn, kỹ năng, dự án và liên hệ. Viết bằng HTML, CSS và JavaScript thuần, không cần cài thư viện hay build.
+Website CV có đầy đủ nội dung tiếng Việt và tiếng Anh, học vấn, kỹ năng, dự án và liên hệ. Bố cục hai cột trên desktop, một cột trên điện thoại, không hiển thị ảnh đại diện. Viết bằng HTML, CSS và JavaScript thuần, không cần cài thư viện hay build.
 
 ## Xem trên máy
 
@@ -27,6 +27,8 @@ Không cần GitHub Actions hoặc bước build. Mọi đường dẫn tài ngu
 - Liên kết trực tiếp bằng `?lang=vi` hoặc `?lang=en`.
 - Nút tải bản PDF gốc bằng tiếng Việt; nút in hỗ trợ ngôn ngữ đang chọn.
 - Responsive cho điện thoại, máy tính và bố cục in A4.
+- Giao diện tối/sáng với font Be Vietnam Pro được lưu trong dự án, không phụ thuộc dịch vụ font bên ngoài khi xem trang. Giấy phép OFL đi kèm trong `assets/fonts/`.
+- Các đường dẫn CSS/JS có mã phiên bản để tránh tải nhầm tài nguyên cũ sau cập nhật.
 - Liên hệ qua email, điện thoại và GitHub.
 - CSVC UMT được ghi rõ là kho mã nguồn riêng tư; truy cập cần quyền từ chủ repo.
 - Nội dung CV vẫn đọc được khi tắt JavaScript.
@@ -36,6 +38,6 @@ Không cần GitHub Actions hoặc bước build. Mọi đường dẫn tài ngu
 - `index.html`: CV tiếng Việt, thông tin liên hệ và liên kết dự án.
 - `script.js`: bản dịch tiếng Anh và chuyển ngôn ngữ.
 - `style.css`: giao diện và bố cục in.
-- `assets/`: ảnh chân dung và CV PDF gốc.
+- `assets/`: favicon, font chữ và CV PDF gốc (PDF giữ nguyên ảnh chân dung như bản được cung cấp).
 
 Thông tin cá nhân, học vấn và kỹ năng được lấy từ CV do chủ hồ sơ cung cấp. Mô tả dự án được đối chiếu với README GitHub. Drive Music dùng công nghệ hiện tại theo README của dự án; PDF gốc giữ nguyên nội dung được cung cấp.

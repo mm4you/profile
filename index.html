@@ -4,32 +4,36 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="CV của Ưng Nhựt Khang — sinh viên Kỹ thuật phần mềm tại UMT, Web Developer. Học vấn, kỹ năng, dự án và thông tin liên hệ.">
-  <meta name="theme-color" content="#ffffff">
+  <meta name="theme-color" content="#0e1115">
   <title>Ưng Nhựt Khang — CV | Web Developer</title>
-  <link rel="icon" href="assets/portrait.png" type="image/png">
-  <link rel="stylesheet" href="style.css">
-  <script src="script.js" defer></script>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="style.css?v=c1d913eb3f">
+  <script src="script.js?v=1aa2fdb996" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#cv" data-i18n="skip">Đến nội dung CV</a>
-  <div class="toolbar" role="region" aria-label="Tùy chọn CV" data-aria="toolbar">
-    <div class="language" role="group" aria-label="Ngôn ngữ" data-aria="language">
-      <button type="button" data-lang="vi" lang="vi" aria-pressed="true">VI</button>
-      <span aria-hidden="true">/</span>
-      <button type="button" data-lang="en" lang="en" aria-pressed="false">EN</button>
+  <header class="site-header">
+    <a class="brand" href="#cv">Nhựt Khang <span>/ web developer</span></a>
+    <nav aria-label="Điều hướng" data-aria="navigation">
+      <a href="#projects" data-i18n="navProjects">Dự án</a>
+      <a href="#education" data-i18n="navEducation">Học vấn</a>
+      <a href="#skills" data-i18n="navSkills">Kỹ năng</a>
+      <a href="#contact" data-i18n="navContact">Liên hệ</a>
+    </nav>
+    <div class="header-controls">
+      <div class="language" role="group" aria-label="Ngôn ngữ" data-aria="language">
+        <button type="button" data-lang="vi" lang="vi" aria-pressed="true">VI</button><span aria-hidden="true">/</span><button type="button" data-lang="en" lang="en" aria-pressed="false">EN</button>
+      </div>
+      <button type="button" id="theme" data-i18n="themeLight">Giao diện sáng</button>
     </div>
-    <div class="toolbar-actions">
-      <button type="button" id="print" data-i18n="print">In CV</button>
-      <a href="assets/cv-ung-nhut-khang.pdf" download data-i18n="download">Tải CV (PDF · tiếng Việt)</a>
-    </div>
-  </div>
-
+  </header>
   <main class="resume" id="cv">
+    <div class="intro-grid">
+      <div class="intro-profile">
     <header class="profile">
-      <img class="portrait" src="assets/portrait.png" width="112" height="152" alt="Ảnh chân dung Ưng Nhựt Khang" data-alt="portrait">
       <div class="identity">
-        <h1>ƯNG NHỰT KHANG</h1>
         <p class="role">Web Developer</p>
+        <h1>Ưng Nhựt Khang</h1>
         <p class="specialization" data-i18n="specialization">Sinh viên Công nghệ thông tin, chuyên ngành Kỹ thuật phần mềm</p>
         <address class="contact-details">
           <div><strong>Email:</strong> <a href="mailto:ungnhutkhang53@gmail.com">ungnhutkhang53@gmail.com</a></div>
@@ -39,23 +43,31 @@
         </address>
       </div>
     </header>
-
-    <section aria-labelledby="objective-heading">
+    <section id="objective" aria-labelledby="objective-heading">
       <h2 id="objective-heading" data-i18n="objectiveHeading">Mục tiêu nghề nghiệp</h2>
       <p data-i18n="objective">Sinh viên Kỹ thuật phần mềm tại UMT, tìm kiếm cơ hội thực tập phát triển Web. Đã thực hành với React, Next.js, TypeScript, cơ sở dữ liệu và tích hợp API qua các dự án cá nhân và dự án nhóm. Có khả năng tự học nhanh, chủ động ứng dụng công cụ AI để hỗ trợ lập trình, tra cứu và hoàn thiện sản phẩm. Mong muốn học hỏi quy trình làm việc thực tế và đóng góp cho dự án.</p>
     </section>
-
-    <section aria-labelledby="education-heading">
-      <h2 id="education-heading" data-i18n="educationHeading">Học vấn</h2>
-      <div class="entry-heading">
-        <h3 data-i18n="university">Trường Đại học Quản lý và Công nghệ TP. Hồ Chí Minh (UMT)</h3>
-        <span class="date" data-i18n="educationDate">2024 – hiện tại</span>
+        <div class="profile-actions">
+          <a class="button primary" href="assets/cv-ung-nhut-khang.pdf" download data-i18n="download">Tải CV (PDF · tiếng Việt)</a>
+          <a class="button" href="mailto:ungnhutkhang53@gmail.com" data-i18n="emailAction">Gửi email ↗</a>
+          <button class="button" type="button" id="print" data-i18n="print">In CV</button>
+        </div>
+        <p class="availability" data-i18n="availability">Đang tìm cơ hội thực tập phát triển Web</p>
       </div>
-      <p class="subline" data-i18n="major">Ngành Công nghệ thông tin, chuyên ngành Kỹ thuật phần mềm (Software Engineering, SE)</p>
-      <ul><li><span data-i18n="gpa">GPA hiện tại:</span> <strong>3.31.</strong> <span data-i18n="graduation">Dự kiến tốt nghiệp năm 2028.</span></li></ul>
-    </section>
-
-    <section aria-labelledby="projects-heading">
+      <aside class="github-panel" aria-labelledby="github-heading">
+        <div class="panel-heading"><h2 id="github-heading" data-i18n="githubHeading">GitHub & mã nguồn</h2><a href="https://github.com/mm4you" target="_blank" rel="noopener noreferrer">@mm4you ↗</a></div>
+        <p class="panel-intro" data-i18n="githubIntro">Học hỏi qua những sản phẩm có thể sử dụng mỗi ngày.</p>
+        <div class="repository-grid">
+          <a class="repository" href="https://github.com/mm4you/ielts" target="_blank" rel="noopener noreferrer"><strong>ielts <span>↗</span></strong><p data-i18n="repoIelts">Ôn từ vựng IELTS với SRS, trò chơi và theo dõi tiến độ.</p><span class="repo-language">TypeScript · Next.js</span></a>
+          <a class="repository" href="https://github.com/mm4you/hackathon" target="_blank" rel="noopener noreferrer"><strong>hackathon <span>↗</span></strong><p data-i18n="repoPort">Đặt lịch vào cảng, điều phối vận hành và điểm thưởng xanh.</p><span class="repo-language">TypeScript · PostgreSQL</span></a>
+          <a class="repository" href="https://github.com/mm4you/drive-music" target="_blank" rel="noopener noreferrer"><strong>drive-music <span>↗</span></strong><p data-i18n="repoMusic">Trình nghe nhạc FLAC trên web, cài đặt dưới dạng PWA.</p><span class="repo-language">React · Cloudflare</span></a>
+          <a class="repository" href="https://github.com/qminh77/csvc-umt" target="_blank" rel="noopener noreferrer"><strong>csvc-umt <span>↗</span></strong><p data-i18n="repoCsvc">Dự án nhóm quản lý cơ sở vật chất tại UMT.</p><span class="repo-language" data-i18n="privateRepo">(Kho mã nguồn riêng tư)</span></a>
+        </div>
+      </aside>
+    </div>
+    <div class="content-grid">
+      <div class="main-column">
+    <section id="projects" aria-labelledby="projects-heading">
       <h2 id="projects-heading" data-i18n="projectsHeading">Dự án nổi bật</h2>
 
       <article class="project">
@@ -116,8 +128,24 @@
         </ul>
       </article>
     </section>
-
-    <section aria-labelledby="skills-heading">
+      </div>
+      <aside class="details-column">
+        <section class="achievement" aria-labelledby="achievement-heading">
+          <h2 id="achievement-heading" data-i18n="achievementHeading">Thành tích nổi bật</h2>
+          <p class="achievement-number">Top 20</p>
+          <h3>Hackathon Digiport Logistics 2025</h3>
+          <p data-i18n="awardDetail">Vòng Bán kết · Dự án logistics cảng biển thông minh</p>
+        </section>
+    <section id="education" aria-labelledby="education-heading">
+      <h2 id="education-heading" data-i18n="educationHeading">Học vấn</h2>
+      <div class="entry-heading">
+        <h3 data-i18n="university">Trường Đại học Quản lý và Công nghệ TP. Hồ Chí Minh (UMT)</h3>
+        <span class="date" data-i18n="educationDate">2024 – hiện tại</span>
+      </div>
+      <p class="subline" data-i18n="major">Ngành Công nghệ thông tin, chuyên ngành Kỹ thuật phần mềm (Software Engineering, SE)</p>
+      <ul><li><span data-i18n="gpa">GPA hiện tại:</span> <strong>3.31.</strong> <span data-i18n="graduation">Dự kiến tốt nghiệp năm 2028.</span></li></ul>
+    </section>
+    <section id="skills" aria-labelledby="skills-heading">
       <h2 id="skills-heading" data-i18n="skillsHeading">Kỹ năng chuyên môn</h2>
       <dl class="skills">
         <dt>Frontend</dt><dd>JavaScript, TypeScript, React, Next.js, Tailwind CSS, <span data-i18n="responsive">giao diện responsive.</span></dd>
@@ -128,13 +156,13 @@
         <dt data-i18n="englishLabel">Tiếng Anh</dt><dd data-i18n="english">B1–B2 (tự đánh giá, chưa có chứng chỉ).</dd>
       </dl>
     </section>
-
-    <section aria-labelledby="interests-heading">
+    <section id="interests" aria-labelledby="interests-heading">
       <h2 id="interests-heading" data-i18n="interestsHeading">Sở thích</h2>
       <p data-i18n="interests">Gặp gỡ bạn bè, trò chuyện, cà phê, nghe nhạc và xem phim.</p>
     </section>
-
-    <section aria-labelledby="contact-heading">
+      </aside>
+    </div>
+    <section id="contact" aria-labelledby="contact-heading">
       <h2 id="contact-heading" data-i18n="contactHeading">Liên hệ</h2>
       <ul class="contact-links">
         <li><strong>Email</strong><a href="mailto:ungnhutkhang53@gmail.com">ungnhutkhang53@gmail.com</a></li>
