@@ -1,43 +1,54 @@
-# Ưng Nhựt Khang — CV
+# Ưng Nhựt Khang — Portfolio
 
-Website CV có đầy đủ nội dung tiếng Việt và tiếng Anh, học vấn, kỹ năng, dự án và liên hệ. Bố cục hai cột trên desktop, một cột trên điện thoại, ảnh chân dung nhỏ cạnh tên. Viết bằng HTML, CSS và JavaScript thuần, không cần cài thư viện hay build.
+Website được phát triển trực tiếp từ bản clone của [qminh77/profile](https://github.com/qminh77/profile), giữ bố cục, CSS và nền tảng component của mẫu. Thông tin, ảnh chân dung, CV và dự án được thay bằng nội dung của Ưng Nhựt Khang. Xem nguồn tham khảo và commit gốc trong `site/UPSTREAM.md`.
 
-## Xem trên máy
+## Nội dung
 
-Tại thư mục dự án, chạy:
+- Chuyển đầy đủ Việt–Anh, lưu lựa chọn và hỗ trợ `?lang=vi` / `?lang=en`.
+- Giao diện sáng, tối và theo hệ thống; menu gọn trên điện thoại.
+- Sáu dự án: IELTS Vocabulary, InnovateX Smart Port, Drive Music, CSVC UMT, Vô Tri và Thi Thố.
+- Bộ lọc Web / Hệ thống / Trò chơi; chỉ hiển thị link repository, không có link demo.
+- Email có thể nhấn để liên hệ hoặc sao chép; điện thoại, GitHub và tải CV PDF gốc bằng tiếng Việt.
+- Học vấn, GPA, kỹ năng, thành tích hackathon, mục tiêu nghề nghiệp và sở thích.
+- Biểu đồ GitHub là ảnh chụp dữ liệu công khai ngày 22/10/2026, được lưu cục bộ; không phải dữ liệu realtime.
+
+## Triển khai GitHub Pages
+
+Bản build hoàn chỉnh đã nằm ở thư mục gốc repo, cùng `.nojekyll`. Trong **Settings → Pages**:
+
+1. Chọn **Deploy from a branch**.
+2. Chọn nhánh **main**, thư mục **/ (root)**.
+3. Nhấn **Save**.
+
+Địa chỉ sau triển khai: https://mm4you.github.io/profile/.
+
+Không cần cấu hình secrets, backend hoặc chạy build trên GitHub để dùng bản đã xuất.
+
+## Mã nguồn & phát triển
+
+Source Next.js 16, React 19, TypeScript, Tailwind CSS 4 và component từ mẫu nằm trong `site/`.
 
 ```sh
-python -m http.server 8080
+npm --prefix site ci
+npm --prefix site run dev -- --port 8080
 ```
 
-Mở http://localhost:8080. Có thể mở `index.html` trực tiếp nếu không cần máy chủ.
+Mở http://localhost:8080/profile/ vì ứng dụng dùng base path `/profile`.
 
-## Triển khai trên GitHub Pages
+## Cập nhật bản triển khai
 
-1. Vào **Settings → Pages** của repo `mm4you/profile`.
-2. Chọn **Deploy from a branch**.
-3. Chọn nhánh **main**, thư mục **/ (root)**, rồi **Save**.
-4. Website sẽ có địa chỉ: https://mm4you.github.io/profile/.
+```sh
+npm --prefix site run build
+node scripts/export-pages.mjs
+```
 
-Không cần GitHub Actions hoặc bước build. Mọi đường dẫn tài nguyên đều tương đối để hoạt động dưới `/profile/`.
+Commit cả source và các file build ở thư mục gốc, rồi push lên `main`. Thư mục `site/.next`, `site/out` và `node_modules` được bỏ qua bởi Git.
 
-## Tính năng
+- `site/lib/profile.ts`: nội dung hai ngôn ngữ và danh sách dự án.
+- `site/components/`: các phần giao diện từ mẫu đã được cá nhân hóa.
+- `site/public/`: ảnh chân dung, biểu đồ hoạt động và CV PDF.
+- `site/next.config.ts`: static export và đường dẫn `/profile`.
 
-- Chuyển VI / EN cho toàn bộ nội dung và nhãn hỗ trợ truy cập; lưu lựa chọn trên trình duyệt.
-- Liên kết trực tiếp bằng `?lang=vi` hoặc `?lang=en`.
-- Nút tải bản PDF gốc bằng tiếng Việt; nút in hỗ trợ ngôn ngữ đang chọn.
-- Responsive cho điện thoại, máy tính và bố cục in A4.
-- Giao diện tối/sáng với font Be Vietnam Pro được lưu trong dự án, không phụ thuộc dịch vụ font bên ngoài khi xem trang. Giấy phép OFL đi kèm trong `assets/fonts/`.
-- Các đường dẫn CSS/JS có mã phiên bản để tránh tải nhầm tài nguyên cũ sau cập nhật.
-- Liên hệ qua email, điện thoại và GitHub.
-- CSVC UMT được ghi rõ là kho mã nguồn riêng tư; truy cập cần quyền từ chủ repo.
-- Nội dung CV vẫn đọc được khi tắt JavaScript.
+Có thể tải lại dữ liệu biểu đồ bằng `python scripts/update-github-activity.py`; khi cập nhật vào một ngày khác, cập nhật ngày hiển thị trong `site/lib/profile.ts` trước khi build.
 
-## Cập nhật nội dung
-
-- `index.html`: CV tiếng Việt, thông tin liên hệ và liên kết dự án.
-- `script.js`: bản dịch tiếng Anh và chuyển ngôn ngữ.
-- `style.css`: giao diện và bố cục in.
-- `assets/`: ảnh chân dung, favicon, font chữ và CV PDF gốc.
-
-Thông tin cá nhân, học vấn và kỹ năng được lấy từ CV do chủ hồ sơ cung cấp. Mô tả dự án được đối chiếu với README GitHub. Drive Music dùng công nghệ hiện tại theo README của dự án; PDF gốc giữ nguyên nội dung được cung cấp.
+Thông tin cá nhân và học vấn dựa trên CV được cung cấp. Mô tả dự án dựa trên README hoặc mã nguồn công khai. CSVC UMT được ghi rõ là repository riêng tư.
