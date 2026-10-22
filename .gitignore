@@ -6,3 +6,4 @@ site/.next/
 site/out/
 site/tsconfig.tsbuildinfo
 site/next-env.d.ts
+tmp/
