@@ -5,7 +5,7 @@ import Link from "next/link"
 import Image from "next/image"
 import { useLanguage } from "./language-provider"
 import { getProjects } from "@/lib/profile"
-import { Github, Eye } from "lucide-react"
+import { Github, Eye, ArrowUpRight } from "lucide-react"
 import {
   Dialog,
   DialogContent,
@@ -78,6 +78,18 @@ export function Projects() {
               <div className="flex items-center gap-3 font-mono text-xs">
                 <span className="text-muted-foreground">{project.period}</span>
                 <div className="flex items-center gap-2">
+                  {project.live && (
+                    <Link
+                      href={project.live}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-0.5 text-foreground hover:text-primary font-medium transition-colors"
+                      title={t.live}
+                    >
+                      <span>{t.live}</span>
+                      <ArrowUpRight className="w-3 h-3" />
+                    </Link>
+                  )}
                   {project.github && (
                     <Link
                       href={project.github}
