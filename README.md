@@ -4,7 +4,7 @@ Website được phát triển trực tiếp từ bản clone của [qminh77/pro
 
 ## Nội dung
 
-- Chuyển đầy đủ Việt–Anh, lưu lựa chọn và hỗ trợ `?lang=vi` / `?lang=en`.
+- Mặc định tiếng Anh ngay từ HTML ban đầu khi mở trang. Nút VI/EN chuyển toàn bộ nội dung và cập nhật `?lang=vi` / `?lang=en`; đường dẫn có ngôn ngữ rõ ràng được ưu tiên.
 - Giao diện sáng, tối và theo hệ thống; menu gọn trên điện thoại.
 - Sáu dự án: IELTS Vocabulary, InnovateX Smart Port, Drive Music, CSVC UMT, Vô Tri và Thi Thố.
 - Bộ lọc Web / Hệ thống / Trò chơi; chỉ hiển thị link repository, không có link demo.
