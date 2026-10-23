@@ -8,7 +8,7 @@ Website được phát triển trực tiếp từ bản clone của [qminh77/pro
 - Giao diện sáng, tối và theo hệ thống; menu gọn trên điện thoại.
 - Sáu dự án: IELTS Vocabulary, InnovateX Smart Port, Drive Music, CSVC UMT, Vô Tri và Thi Thố.
 - Bộ lọc Web / Hệ thống / Trò chơi; các dự án có link repository, IELTS Vocabulary, Vô Tri và Thi Thố có thêm link trải nghiệm trực tiếp.
-- Email có thể nhấn để liên hệ hoặc sao chép; điện thoại, GitHub và tải CV PDF tiếng Việt đã cập nhật đủ sáu dự án.
+- Email có thể nhấn để liên hệ hoặc sao chép; điện thoại, GitHub và tải CV PDF Việt/Anh theo ngôn ngữ đang xem, đủ sáu dự án và vai trò cụ thể.
 - Học vấn, GPA, kỹ năng, thành tích hackathon, mục tiêu nghề nghiệp và sở thích.
 - Biểu đồ GitHub là ảnh chụp dữ liệu công khai ngày 22/10/2026, được lưu cục bộ; không phải dữ liệu realtime.
 
@@ -66,4 +66,4 @@ Thông tin cá nhân và học vấn dựa trên CV được cung cấp. Mô t�
 
 ## Cập nhật CV PDF
 
-Mã LaTeX nằm trong `resume/cv-ung-nhut-khang.tex`, dùng ảnh tại `site/public/profile.jpg`. Biên dịch bằng XeLaTeX hoặc Tectonic, kiểm tra PDF một trang rồi sao chép vào `site/public/cv-ung-nhut-khang.pdf` và `cv-ung-nhut-khang.pdf`.
+Mã LaTeX tiếng Việt nằm trong `resume/cv-ung-nhut-khang.tex`; tiếng Anh nằm trong `resume/cv-ung-nhut-khang-en.tex`. Cả hai dùng ảnh tại `site/public/profile.jpg`. Biên dịch bằng XeLaTeX hoặc Tectonic, kiểm tra mỗi PDF một trang rồi sao chép vào `site/public/` và thư mục gốc. Các nút tải CV chọn file theo ngôn ngữ đang xem. IELTS, Thi Thố, Vô Tri và Drive Music là dự án cá nhân. Hackathon: phụ trách toàn bộ lập trình, ý tưởng cùng nhóm. CSVC UMT: thành viên phát triển trong nhóm.

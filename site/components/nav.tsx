@@ -16,7 +16,7 @@ export function Navbar() {
       </a>
       <nav aria-label={t.menu} className="hidden lg:flex items-center gap-1 ml-auto">
         {links.map(([href,label])=><a key={href} href={href} className="px-2 py-1 text-xs font-medium text-muted-foreground hover:text-foreground transition-colors rounded-md hover:bg-muted/50">{label}</a>)}
-        <a href={asset('cv-ung-nhut-khang.pdf')} download title={t.pdfLanguage} className="inline-flex items-center gap-1.5 px-2.5 h-8 text-xs font-medium text-foreground hover:bg-muted/50 rounded-md"><Download className="w-3.5 h-3.5 text-muted-foreground"/>{t.resume}</a>
+        <a href={asset(t.pdfFile)} download title={t.pdfLanguage} className="inline-flex items-center gap-1.5 px-2.5 h-8 text-xs font-medium text-foreground hover:bg-muted/50 rounded-md"><Download className="w-3.5 h-3.5 text-muted-foreground"/>{t.resume}</a>
       </nav>
       <div className="flex items-center gap-2 shrink-0">
         <div className="flex items-center gap-1 font-mono text-[11px]" aria-label={language==='vi'?'Ngôn ngữ':'Language'}>
@@ -26,7 +26,7 @@ export function Navbar() {
         <Sheet open={open} onOpenChange={setOpen}>
           <SheetTrigger asChild><Button className="lg:hidden" variant="ghost" size="icon" aria-label={t.menu}><Menu className="h-4 w-4"/></Button></SheetTrigger>
           <SheetContent side="right" className="max-w-xs"><SheetHeader><SheetTitle>{t.menu}</SheetTitle></SheetHeader>
-            <nav className="flex flex-col gap-2 p-4">{links.map(([href,label])=><a key={href} href={href} onClick={()=>setOpen(false)} className="px-3 py-2 rounded-md hover:bg-muted text-sm">{label}</a>)}<a href={asset('cv-ung-nhut-khang.pdf')} download className="px-3 py-2 text-sm text-primary">{t.download} · {t.pdfLanguage}</a></nav>
+            <nav className="flex flex-col gap-2 p-4">{links.map(([href,label])=><a key={href} href={href} onClick={()=>setOpen(false)} className="px-3 py-2 rounded-md hover:bg-muted text-sm">{label}</a>)}<a href={asset(t.pdfFile)} download className="px-3 py-2 text-sm text-primary">{t.download} · {t.pdfLanguage}</a></nav>
           </SheetContent>
         </Sheet>
       </div>

@@ -76,7 +76,7 @@ export function Hero() {
           {/* Action Buttons */}
           <div className="flex flex-wrap items-center gap-2 pt-1 font-mono text-xs">
             <a
-              href={asset("cv-ung-nhut-khang.pdf")}
+              href={asset(t.pdfFile)}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md bg-foreground text-background hover:opacity-90 transition-opacity font-semibold"
