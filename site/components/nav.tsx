@@ -63,9 +63,15 @@ export function Navbar() {
         <div className="shell flex h-14 items-center justify-between gap-4">
           <Link
             href="#top"
-            className="group flex shrink-0 items-center gap-2"
+            className="group flex shrink-0 items-center gap-1.5 sm:gap-2"
             aria-label={`${site.name} — back to cover`}
           >
+            <span
+              aria-hidden="true"
+              className="inline-block translate-y-[-1px] font-mono text-[22px] font-bold leading-none text-primary transition-transform duration-200 group-hover:rotate-45"
+            >
+              *
+            </span>
             <span className="font-mono text-[10px] font-medium uppercase tracking-[0.12em] text-foreground sm:text-[11px]">
               {site.shortName}
             </span>
@@ -75,14 +81,14 @@ export function Navbar() {
               alt="UMT School of Technology"
               width={160}
               height={28}
-              className="block h-auto w-24 shrink-0 dark:hidden sm:w-40"
+              className="block h-auto w-20 shrink-0 dark:hidden sm:w-40"
             />
             <img
               src={asset('umt-wordmark-dark.svg')}
               alt="UMT School of Technology"
               width={160}
               height={28}
-              className="hidden h-auto w-24 shrink-0 dark:block sm:w-40"
+              className="hidden h-auto w-20 shrink-0 dark:block sm:w-40"
             />
             <span aria-hidden="true" className="label hidden 2xl:inline">
               /
