@@ -67,9 +67,9 @@ export function OpenSource() {
               <div className="min-w-[420px] sm:min-w-[560px]">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
-                  src="https://ghchart.rshah.org/c93400/mm4you"
+                  src="https://ghchart.rshah.org/2fc1e3/mm4you"
                   alt="GitHub contribution chart for mm4you"
-                  className="h-auto w-full opacity-90 dark:invert dark:hue-rotate-180"
+                  className="h-auto w-full opacity-90"
                   loading="lazy"
                 />
               </div>

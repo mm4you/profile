@@ -3,5 +3,25 @@
   "framework": null,
   "installCommand": "npm --prefix site ci",
   "buildCommand": "npm --prefix site run build",
-  "outputDirectory": "site/out"
+  "outputDirectory": "site/out",
+  "headers": [
+    {
+      "source": "/github-activity.svg",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=0, must-revalidate"
+        }
+      ]
+    },
+    {
+      "source": "/github-activity-light.svg",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=0, must-revalidate"
+        }
+      ]
+    }
+  ]
 }
