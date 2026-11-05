@@ -108,7 +108,7 @@ export default function Entry({ vi, onOpen, cardOnly=false }: EntryProps) {
         setArt({
           front: fc.toDataURL('image/png'),
           back: bc.toDataURL('image/png'),
-          strap: asset('umt-lanyard.svg?v=compact-20261105'),
+          strap: asset('umt-lanyard.svg?v=outlined-safe-v3'),
         })
       } catch {
         if (alive) {
