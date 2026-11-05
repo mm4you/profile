@@ -79,13 +79,16 @@ function drawStrap(b:CanvasRenderingContext2D){
 
   b.fillStyle='#f7faf8';b.font='800 82px Arial,sans-serif'
   b.fillText('UMT',218,107)
-  // Paired nested corners, matched to the supplied close-up of the UMT mark.
-  b.fillStyle='#df1434'
-  b.fillRect(408,62,24,6);b.fillRect(426,62,6,28)
-  b.fillRect(408,71,15,6);b.fillRect(417,71,6,19)
-  b.fillStyle='#40b9d7'
-  b.fillRect(432,30,6,28);b.fillRect(432,52,24,6)
-  b.fillRect(441,30,6,19);b.fillRect(441,43,15,6)
+  // Geometry from the supplied clean logo: equal arms, 16-unit strokes,
+  // 5-unit negative spaces, and the two outer corners meeting at the centre.
+  b.save();b.translate(408,30);b.scale(.36,.36)
+  b.fillStyle='#ed1b2f'
+  b.fillRect(0,75,75,16);b.fillRect(59,75,16,75)
+  b.fillRect(0,96,54,16);b.fillRect(38,96,16,54)
+  b.fillStyle='#2fc1e3'
+  b.fillRect(75,0,16,75);b.fillRect(75,59,75,16)
+  b.fillRect(96,0,16,54);b.fillRect(96,38,54,16)
+  b.restore()
 
   b.fillStyle='#f7faf8';b.font='800 35px Arial,sans-serif'
   b.fillText('SCHOOL OF',470,66)
