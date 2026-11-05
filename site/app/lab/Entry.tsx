@@ -136,7 +136,7 @@ export default function Entry({ vi, onOpen, cardOnly=false }: EntryProps) {
       <div className={s.actions}><button onClick={onOpen}>{vi?'Xem các dự án':'Explore my work'} ↓</button><a href={vi?'/cv-ung-nhut-khang.pdf':'/cv-ung-nhut-khang-en.pdf'} target="_blank" rel="noopener noreferrer">{vi?'Tải CV':'Download CV'} ↗</a></div>
     </div>}
     <div className={s.scene} ref={scene}>
-      {art&&<Lanyard frontImage={art.front} backImage={art.back} strapImage={art.strap||undefined} strapOffset={.52} size={.58} anchor={wide?"right":"center"} strapLength={.50} strapWidth={.63} finish="matte" metal="graphite" cardColor="#152129" strapColor="#080c0d" breeze={.1} damping={.65} cornerRadius={.16} showReader={false} onReady={()=>setReady(true)} onUnsupported={()=>setFailed(true)}/>}
+      {art&&<Lanyard frontImage={art.front} backImage={art.back} strapImage={art.strap||undefined} strapOffset={.32} size={.58} anchor={wide?"right":"center"} strapLength={.50} strapWidth={.63} finish="matte" metal="graphite" cardColor="#152129" strapColor="#080c0d" breeze={.1} damping={.65} cornerRadius={.16} showReader={false} onReady={()=>setReady(true)} onUnsupported={()=>setFailed(true)}/>}
       {failed&&<div className={s.fallback}><img src="/profile.jpg" alt="Ưng Nhựt Khang"/><strong>Ưng Nhựt Khang</strong></div>}
       <div className={s.instruction}>{ready?(vi?'Kéo để xoay · Chạm để lật':'Drag to move · Tap to flip'):(vi?'Đang chuẩn bị thẻ…':'Preparing your card…')}</div>
     </div>
