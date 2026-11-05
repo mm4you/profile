@@ -41,9 +41,9 @@
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
 
-  --font-sans: var(--font-obel), ui-monospace, SFMono-Regular, Menlo, Monaco,
+  --font-sans: var(--font-editorial), ui-monospace, SFMono-Regular, Menlo, Monaco,
     Consolas, "Liberation Mono", monospace;
-  --font-mono: var(--font-obel), ui-monospace, SFMono-Regular, Menlo, Monaco,
+  --font-mono: var(--font-editorial), ui-monospace, SFMono-Regular, Menlo, Monaco,
     Consolas, "Liberation Mono", monospace;
 
   /* The system has no rounded corners. */
@@ -57,6 +57,7 @@
 }
 
 :root {
+  --font-editorial: var(--font-obel);
   --radius: 0px;
   --ease: cubic-bezier(0.16, 1, 0.3, 1);
 
@@ -790,3 +791,8 @@
 
 html{scroll-padding-top:80px}
 @font-face{font-family:Obel;src:url('/fonts/obel/ObelMono-VF.woff2') format('woff2');font-weight:100 900;font-display:swap}
+
+/* Select one complete family for Vietnamese; never mix glyphs within a word. */
+html[lang="vi"] { --font-editorial: var(--font-vietnamese); }
+.font-vietnamese { font-family: var(--font-vietnamese), monospace; font-feature-settings: normal; }
+.cover-name { font-family: var(--font-obel), monospace; }

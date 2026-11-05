@@ -50,7 +50,7 @@ export function MobileNav({ open, onOpenChange, active }: MobileNavProps) {
               <AvatarFallback>KH</AvatarFallback>
             </Avatar>
             <div className="min-w-0">
-              <p className="truncate font-mono text-[11px] font-medium uppercase tracking-[0.08em] text-foreground">
+              <p lang="vi" className="truncate font-vietnamese text-[11px] font-medium uppercase tracking-[0.08em] text-foreground">
                 {site.name}
               </p>
               <p className="label mt-1 truncate">

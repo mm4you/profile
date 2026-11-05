@@ -3,7 +3,7 @@ import localFont from "next/font/local"
 /**
  * Obel Mono 1.001 — Typographic Systems
  * Variable monospace, weights 100–900, roman + italic.
- * Self-hosted through next/font/local; license in public/fonts/OFL.txt.
+ * Self-hosted through next/font/local; license in public/fonts/obel/OFL.txt.
  */
 export const obelMono = localFont({
   src: [
@@ -30,4 +30,16 @@ export const obelMono = localFont({
     "Liberation Mono",
     "monospace",
   ],
+})
+
+// Obel has no Vietnamese glyphs. Use a complete companion face for Vietnamese
+// text runs instead of falling back one accented character at a time.
+export const vietnameseMono = localFont({
+  src: './fonts/JetBrainsMono-Vietnamese-VF.woff2',
+  weight: '100 800',
+  style: 'normal',
+  variable: '--font-vietnamese',
+  display: 'swap',
+  preload: true,
+  fallback: ['Consolas', 'monospace'],
 })

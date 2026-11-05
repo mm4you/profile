@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import './globals.css'
-import {obelMono} from './fonts'
+import {obelMono,vietnameseMono} from './fonts'
 import {ThemeProvider} from '@/components/theme-provider'
 import {LanguageProvider} from '@/components/language-provider'
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH || ''
@@ -15,7 +15,7 @@ export const metadata:Metadata={
   openGraph:{title:'Ưng Nhựt Khang | Web Developer',description:'Portfolio, projects and contact details for Ưng Nhựt Khang.',url:siteUrl,siteName:'Ưng Nhựt Khang',locale:'en_US',type:'website',images:[{url:new URL('profile.jpg',siteUrl).href,width:1707,height:2560,alt:'Ưng Nhựt Khang'}]},
 }
 export default function RootLayout({children}:{children:React.ReactNode}) {
-  return <html lang="en" suppressHydrationWarning className={`${obelMono.variable} scroll-smooth`}><body className="antialiased font-sans selection:bg-primary/15 selection:text-primary min-h-screen bg-background text-foreground">
+  return <html lang="en" suppressHydrationWarning className={`${obelMono.variable} ${vietnameseMono.variable} scroll-smooth`}><body className="antialiased font-sans selection:bg-primary/15 selection:text-primary min-h-screen bg-background text-foreground">
     <ThemeProvider attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange>
       <LanguageProvider><a href="#main" className="fixed -top-20 left-4 z-50 rounded-md bg-foreground text-background px-4 py-2 focus:top-2">Đến nội dung chính / Skip to content</a>{children}</LanguageProvider>
     </ThemeProvider>
