@@ -4,3 +4,5 @@
 @media(max-width:750px){.badge{margin-top:0;height:auto;padding-top:0}}
 
 .copy{position:relative;z-index:2;pointer-events:none}.copy a,.copy button{pointer-events:auto}
+
+@media(max-width:750px){.copy h1>span:last-child{word-spacing:-.2em}}
