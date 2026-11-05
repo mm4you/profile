@@ -15,10 +15,10 @@ interface EntryProps {
 
 function drawCardFront(g: CanvasRenderingContext2D, img: HTMLImageElement | null, vi: boolean) {
   const W=1024,H=1440
-  g.fillStyle='#161513';g.fillRect(0,0,W,H)
-  g.strokeStyle='#4b433a';g.lineWidth=2;g.strokeRect(24,24,W-48,H-48)
-  g.fillStyle='#d96832';g.fillRect(24,66,7,62)
-  g.fillStyle='#b9afa1';g.font='500 23px Obel,monospace';g.fillText('KHANG / PERSONAL EDITION',60,104);g.textAlign='right';g.fillStyle='#d96832';g.fillText('01 / 02',964,104);g.textAlign='left'
+  g.fillStyle='#10181d';g.fillRect(0,0,W,H)
+  g.strokeStyle='#33434d';g.lineWidth=2;g.strokeRect(24,24,W-48,H-48)
+  g.fillStyle='#2fc1e3';g.fillRect(24,66,7,62)
+  g.fillStyle='#b4c3ca';g.font='500 23px Obel,monospace';g.fillText('KHANG / PERSONAL EDITION',60,104);g.textAlign='right';g.fillStyle='#2fc1e3';g.fillText('01 / 02',964,104);g.textAlign='left'
   // A true 4:6 portrait. Preserve the source color and show the full photograph.
   const px=60,py=150,pw=720,ph=1080
   if(img&&img.complete&&img.naturalWidth>0){
@@ -26,41 +26,41 @@ function drawCardFront(g: CanvasRenderingContext2D, img: HTMLImageElement | null
     g.filter='none'
     const factor=Math.min(pw/img.naturalWidth,ph/img.naturalHeight)
     const w=img.naturalWidth*factor,h=img.naturalHeight*factor
-    g.fillStyle='#faf9f6';g.fillRect(px,py,pw,ph)
+    g.fillStyle='#f4f7f8';g.fillRect(px,py,pw,ph)
     g.drawImage(img,px+(pw-w)/2,py+(ph-h)/2,w,h)
     g.restore()
   }
-  g.strokeStyle='#62564a';g.lineWidth=1;g.strokeRect(px,py,pw,ph)
+  g.strokeStyle='#526771';g.lineWidth=1;g.strokeRect(px,py,pw,ph)
   g.save();g.translate(924,1194);g.rotate(-Math.PI/2)
-  g.fillStyle='#d96832';g.font='650 110px Obel,monospace';g.fillText('MM4YOU',0,0)
-  g.fillStyle='#b1a696';g.font='400 22px Obel,monospace';g.fillText('WEB / SOFTWARE / UMT',0,-128)
+  g.fillStyle='#2fc1e3';g.font='650 110px Obel,monospace';g.fillText('MM4YOU',0,0)
+  g.fillStyle='#a0b5c0';g.font='400 22px Obel,monospace';g.fillText('WEB / SOFTWARE / UMT',0,-128)
   g.restore()
-  g.fillStyle='#ece6dc';g.font='600 60px Arial,sans-serif';g.fillText('Ưng Nhựt Khang',60,1308)
-  g.fillStyle='#c3b7a6';g.font='500 24px Obel,monospace';g.fillText('WEB DEVELOPER',60,1356)
-  g.textAlign='right';g.fillStyle='#d96832';g.fillText('UMT / SE',964,1356);g.textAlign='left'
-  g.strokeStyle='#4b433a';g.beginPath();g.moveTo(60,1380);g.lineTo(964,1380);g.stroke();g.fillStyle='#b1a696';g.font='400 22px Obel,monospace';g.fillText('github.com/mm4you',60,1410)
+  g.fillStyle='#edf3f5';g.font='600 60px Arial,sans-serif';g.fillText('Ưng Nhựt Khang',60,1308)
+  g.fillStyle='#becdd4';g.font='500 24px Obel,monospace';g.fillText('WEB DEVELOPER',60,1356)
+  g.textAlign='right';g.fillStyle='#2fc1e3';g.fillText('UMT / SE',964,1356);g.textAlign='left'
+  g.strokeStyle='#33434d';g.beginPath();g.moveTo(60,1380);g.lineTo(964,1380);g.stroke();g.fillStyle='#a0b5c0';g.font='400 22px Obel,monospace';g.fillText('github.com/mm4you',60,1410)
 }
 function drawCardBack(g:CanvasRenderingContext2D,vi:boolean){
   const mono='Obel, monospace'
-  g.fillStyle='#161513';g.fillRect(0,0,1024,1440)
-  g.strokeStyle='#4b433a';g.lineWidth=2;g.strokeRect(24,24,976,1392)
-  g.fillStyle='#d96832';g.fillRect(24,66,7,62)
-  g.fillStyle='#b9afa1';g.font=`500 23px ${mono}`;g.fillText('KHANG / PERSONAL EDITION',60,104)
-  g.textAlign='right';g.fillStyle='#d96832';g.fillText('02 / 02',964,104);g.textAlign='left'
-  g.fillStyle='#ece6dc';g.font=`350 280px ${mono}`;g.fillText('MM',50,454)
-  g.fillStyle='#d96832';g.font=`650 260px ${mono}`;g.fillText('4YOU.',50,700)
-  g.strokeStyle='#4b433a';g.beginPath();g.moveTo(60,780);g.lineTo(964,780);g.stroke()
-  g.fillStyle='#ece6dc';g.font='600 50px Arial,sans-serif';g.fillText('Ưng Nhựt Khang',60,872)
-  g.fillStyle='#b9afa1';g.font=`400 27px ${mono}`;g.fillText('WEB DEVELOPER / UMT',60,927)
+  g.fillStyle='#10181d';g.fillRect(0,0,1024,1440)
+  g.strokeStyle='#33434d';g.lineWidth=2;g.strokeRect(24,24,976,1392)
+  g.fillStyle='#2fc1e3';g.fillRect(24,66,7,62)
+  g.fillStyle='#b4c3ca';g.font=`500 23px ${mono}`;g.fillText('KHANG / PERSONAL EDITION',60,104)
+  g.textAlign='right';g.fillStyle='#2fc1e3';g.fillText('02 / 02',964,104);g.textAlign='left'
+  g.fillStyle='#edf3f5';g.font=`350 280px ${mono}`;g.fillText('MM',50,454)
+  g.fillStyle='#2fc1e3';g.font=`650 260px ${mono}`;g.fillText('4YOU.',50,700)
+  g.strokeStyle='#33434d';g.beginPath();g.moveTo(60,780);g.lineTo(964,780);g.stroke()
+  g.fillStyle='#edf3f5';g.font='600 50px Arial,sans-serif';g.fillText('Ưng Nhựt Khang',60,872)
+  g.fillStyle='#b4c3ca';g.font=`400 27px ${mono}`;g.fillText('WEB DEVELOPER / UMT',60,927)
   g.font='400 29px Arial,sans-serif'
   const bio=vi?['Tự phát triển ứng dụng web,','công cụ học tập và trò chơi.']:['Building web apps, learning tools','and little browser games.']
   bio.forEach((line,i)=>g.fillText(line,60,1000+i*42))
-  g.fillStyle='#d96832';g.font=`500 23px ${mono}`;g.fillText('REACT / NEXT.JS / TYPESCRIPT',60,1130)
-  g.fillStyle='#b9afa1';g.font=`400 23px ${mono}`;g.fillText('POSTGRESQL / SUPABASE / NEON',60,1172)
-  g.strokeStyle='#4b433a';g.beginPath();g.moveTo(60,1220);g.lineTo(964,1220);g.stroke()
-  g.fillStyle='#ece6dc';g.font=`400 29px ${mono}`;g.fillText('contact@ungnhutkhang.id.vn',60,1290)
-  g.fillStyle='#b9afa1';g.font=`400 26px ${mono}`;g.fillText('ungnhutkhang.id.vn',60,1340)
-  g.font=`500 20px ${mono}`;g.fillStyle='#84766a';g.fillText('GITHUB / MM4YOU',60,1390);g.textAlign='right';g.fillText('HCMC, VN',964,1390);g.textAlign='left'
+  g.fillStyle='#2fc1e3';g.font=`500 23px ${mono}`;g.fillText('REACT / NEXT.JS / TYPESCRIPT',60,1130)
+  g.fillStyle='#b4c3ca';g.font=`400 23px ${mono}`;g.fillText('POSTGRESQL / SUPABASE / NEON',60,1172)
+  g.strokeStyle='#33434d';g.beginPath();g.moveTo(60,1220);g.lineTo(964,1220);g.stroke()
+  g.fillStyle='#edf3f5';g.font=`400 29px ${mono}`;g.fillText('contact@ungnhutkhang.id.vn',60,1290)
+  g.fillStyle='#b4c3ca';g.font=`400 26px ${mono}`;g.fillText('ungnhutkhang.id.vn',60,1340)
+  g.font=`500 20px ${mono}`;g.fillStyle='#8599a5';g.fillText('GITHUB / MM4YOU',60,1390);g.textAlign='right';g.fillText('HCMC, VN',964,1390);g.textAlign='left'
 }
 export default function Entry({ vi, onOpen, cardOnly=false }: EntryProps) {
   const [art, setArt] = useState<{ front: string; back: string; strap: string } | null>(null)
@@ -136,7 +136,7 @@ export default function Entry({ vi, onOpen, cardOnly=false }: EntryProps) {
       <div className={s.actions}><button onClick={onOpen}>{vi?'Xem các dự án':'Explore my work'} ↓</button><a href={vi?'/cv-ung-nhut-khang.pdf':'/cv-ung-nhut-khang-en.pdf'} target="_blank" rel="noopener noreferrer">{vi?'Tải CV':'Download CV'} ↗</a></div>
     </div>}
     <div className={s.scene} ref={scene}>
-      {art&&<Lanyard frontImage={art.front} backImage={art.back} strapImage={art.strap||undefined} strapOffset={.52} size={.63} anchor={wide?"right":"center"} strapLength={.32} strapWidth={.58} finish="matte" metal="graphite" cardColor="#231b14" strapColor="#080c0d" breeze={.1} damping={.65} cornerRadius={.16} showReader={false} onReady={()=>setReady(true)} onUnsupported={()=>setFailed(true)}/>}
+      {art&&<Lanyard frontImage={art.front} backImage={art.back} strapImage={art.strap||undefined} strapOffset={.52} size={.63} anchor={wide?"right":"center"} strapLength={.32} strapWidth={.58} finish="matte" metal="graphite" cardColor="#152129" strapColor="#080c0d" breeze={.1} damping={.65} cornerRadius={.16} showReader={false} onReady={()=>setReady(true)} onUnsupported={()=>setFailed(true)}/>}
       {failed&&<div className={s.fallback}><img src="/profile.jpg" alt="Ưng Nhựt Khang"/><strong>Ưng Nhựt Khang</strong></div>}
       <div className={s.instruction}>{ready?(vi?'Kéo để xoay · Chạm để lật':'Drag to move · Tap to flip'):(vi?'Đang chuẩn bị thẻ…':'Preparing your card…')}</div>
     </div>

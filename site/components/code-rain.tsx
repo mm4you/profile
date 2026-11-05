@@ -29,7 +29,7 @@ export function CodeRain({ className }: { className?: string }) {
     let lastFrame = 0
     let animation: number | null = null
     let visible = true
-    let colors = { primary: "#ff3c05", foreground: "#f1f1ef" }
+    let colors = { primary: "#2fc1e3", foreground: "#edf3f5" }
 
     const readColors = () => {
       const styles = window.getComputedStyle(document.documentElement)

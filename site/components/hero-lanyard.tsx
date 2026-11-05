@@ -56,7 +56,7 @@ export function HeroLanyard() {
         fg.strokeRect(24, 24, W - 48, H - 48)
 
         // Subtle burnt orange corner accent tick
-        fg.fillStyle = "#c93400"
+        fg.fillStyle = "#007f9e"
         fg.fillRect(24, 60, 4, 60)
 
         // Top technical labels flanking lanyard slot hole
@@ -95,7 +95,7 @@ export function HeroLanyard() {
         fg.fillText("Ưng Nhựt Khang", 52, 1285)
 
         // Line 2: Role
-        fg.fillStyle = "#c93400"
+        fg.fillStyle = "#007f9e"
         fg.font = '600 23px "Obel Mono", "Obel", monospace'
         fg.fillText(
           vi
@@ -111,7 +111,7 @@ export function HeroLanyard() {
         fg.fillText("contact@ungnhutkhang.id.vn   ·   github.com/mm4you", 52, 1368)
 
         // Line 4: Small technical status
-        fg.fillStyle = "#c93400"
+        fg.fillStyle = "#007f9e"
         fg.beginPath()
         fg.arc(58, 1405, 3.5, 0, Math.PI * 2)
         fg.fill()
@@ -149,7 +149,7 @@ export function HeroLanyard() {
           '700 44px "Obel Mono", "Obel", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif'
         bg.fillText("Ưng Nhựt Khang", 56, 195)
 
-        bg.fillStyle = "#c93400"
+        bg.fillStyle = "#007f9e"
         bg.font = '600 22px "Obel Mono", "Obel", monospace'
         bg.fillText(
           vi
@@ -205,7 +205,7 @@ export function HeroLanyard() {
           bg.strokeStyle = "#262629"
           bg.lineWidth = 1.5
           bg.strokeRect(56, y, W - 112, 64)
-          bg.fillStyle = i === 2 ? "#c93400" : i === 3 ? "#e87348" : "#deded8"
+          bg.fillStyle = i === 2 ? "#007f9e" : i === 3 ? "#e87348" : "#deded8"
           bg.fillText(pill, 80, y + 40)
         })
 
@@ -225,7 +225,7 @@ export function HeroLanyard() {
         bg.fillText("Location: Phường Cát Lái, TP. Hồ Chí Minh", 56, 1165)
 
         // Footer call to action
-        bg.fillStyle = "#c93400"
+        bg.fillStyle = "#007f9e"
         bg.font = '600 20px "Obel Mono", "Obel", monospace'
         bg.fillText(
           vi ? "CHẠM HOẶC CLICK ĐỂ LẬT THẺ ↻" : "CLICK OR TAP TO FLIP CARD ↻",
@@ -251,7 +251,7 @@ export function HeroLanyard() {
         sg.fillRect(0, 10, 1000, 4)
         sg.fillRect(0, 146, 1000, 4)
 
-        sg.fillStyle = "#c93400"
+        sg.fillStyle = "#007f9e"
         sg.font = '600 34px "Obel Mono", "Obel", monospace'
         sg.fillText("UNG NHUT KHANG   *   WEB DEVELOPER   *   UMT   *   MM4YOU   *   ", 16, 95)
       }

@@ -311,7 +311,7 @@ const parseColor = (value: string, fallback: Rgb): Rgb => {
   try {
     const ctx = document.createElement('canvas').getContext('2d');
     if (!ctx) return fallback;
-    ctx.fillStyle = '#000000';
+    ctx.fillStyle = '#080c0f';
     ctx.fillStyle = value;
     const resolved = ctx.fillStyle;
     if (resolved.startsWith('#')) {

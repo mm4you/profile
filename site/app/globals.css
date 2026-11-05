@@ -5,7 +5,7 @@
 
 /* -------------------------------------------------------------------------- */
 /*  Design tokens                                                              */
-/*  A typographic system built around Obel Mono: ink, paper, one signal orange. */
+/*  A typographic system built around Obel Mono: charcoal, white, UMT cyan. */
 /* -------------------------------------------------------------------------- */
 
 @theme inline {
@@ -61,84 +61,84 @@
   --ease: cubic-bezier(0.16, 1, 0.3, 1);
 
   /* Paper */
-  --background: #e9e8e3;
-  --foreground: #0b0b0b;
-  --card: #f2f1ec;
-  --card-foreground: #0b0b0b;
-  --popover: #f2f1ec;
-  --popover-foreground: #0b0b0b;
+  --background: #f2f5f6;
+  --foreground: #111a20;
+  --card: #ffffff;
+  --card-foreground: #111a20;
+  --popover: #ffffff;
+  --popover-foreground: #111a20;
 
   /* Signal */
-  --primary: #c93400;
+  --primary: #007f9e;
   --primary-foreground: #ffffff;
 
-  --secondary: #dedcd4;
-  --secondary-foreground: #0b0b0b;
-  --muted: #dedcd4;
-  --muted-foreground: #66665f;
-  --accent: #e1dfd7;
-  --accent-foreground: #0b0b0b;
+  --secondary: #e3ebef;
+  --secondary-foreground: #111a20;
+  --muted: #e3ebef;
+  --muted-foreground: #526875;
+  --accent: #e3edf1;
+  --accent-foreground: #111a20;
   --destructive: #b3261e;
 
-  --border: #c7c5bc;
-  --input: #c7c5bc;
-  --ring: #c93400;
+  --border: #c6d4dc;
+  --input: #c6d4dc;
+  --ring: #007f9e;
 
-  --chart-1: #c93400;
-  --chart-2: #0b0b0b;
-  --chart-3: #66665f;
-  --chart-4: #8f8d85;
-  --chart-5: #b9b7ae;
+  --chart-1: #007f9e;
+  --chart-2: #111a20;
+  --chart-3: #526875;
+  --chart-4: #748b98;
+  --chart-5: #b4c6cf;
 
-  --sidebar: #f2f1ec;
-  --sidebar-foreground: #0b0b0b;
-  --sidebar-primary: #c93400;
+  --sidebar: #ffffff;
+  --sidebar-foreground: #111a20;
+  --sidebar-primary: #007f9e;
   --sidebar-primary-foreground: #ffffff;
-  --sidebar-accent: #dedcd4;
-  --sidebar-accent-foreground: #0b0b0b;
-  --sidebar-border: #c7c5bc;
-  --sidebar-ring: #c93400;
+  --sidebar-accent: #e3ebef;
+  --sidebar-accent-foreground: #111a20;
+  --sidebar-border: #c6d4dc;
+  --sidebar-ring: #007f9e;
 }
 
 .dark {
   /* Ink */
-  --background: #000000;
-  --foreground: #f1f1ef;
-  --card: #0a0a0a;
-  --card-foreground: #f1f1ef;
-  --popover: #0a0a0a;
-  --popover-foreground: #f1f1ef;
+  --background: #080c0f;
+  --foreground: #edf3f5;
+  --card: #0e151a;
+  --card-foreground: #edf3f5;
+  --popover: #0e151a;
+  --popover-foreground: #edf3f5;
 
   /* Signal */
-  --primary: #ff3c05;
-  --primary-foreground: #050505;
+  --primary: #2fc1e3;
+  --primary-foreground: #061319;
 
-  --secondary: #161616;
-  --secondary-foreground: #f1f1ef;
-  --muted: #161616;
-  --muted-foreground: #8a8a88;
-  --accent: #1a1a1a;
-  --accent-foreground: #f1f1ef;
+  --secondary: #142129;
+  --secondary-foreground: #edf3f5;
+  --muted: #142129;
+  --muted-foreground: #98a9b2;
+  --accent: #18262f;
+  --accent-foreground: #edf3f5;
   --destructive: #ff5b3a;
 
-  --border: #262626;
-  --input: #262626;
-  --ring: #ff3c05;
+  --border: #283943;
+  --input: #283943;
+  --ring: #2fc1e3;
 
-  --chart-1: #ff3c05;
-  --chart-2: #f1f1ef;
-  --chart-3: #bdbdbb;
-  --chart-4: #8a8a88;
-  --chart-5: #3a3a38;
+  --chart-1: #2fc1e3;
+  --chart-2: #edf3f5;
+  --chart-3: #bfced6;
+  --chart-4: #98a9b2;
+  --chart-5: #435966;
 
-  --sidebar: #0a0a0a;
-  --sidebar-foreground: #f1f1ef;
-  --sidebar-primary: #ff3c05;
-  --sidebar-primary-foreground: #050505;
-  --sidebar-accent: #161616;
-  --sidebar-accent-foreground: #f1f1ef;
-  --sidebar-border: #262626;
-  --sidebar-ring: #ff3c05;
+  --sidebar: #0e151a;
+  --sidebar-foreground: #edf3f5;
+  --sidebar-primary: #2fc1e3;
+  --sidebar-primary-foreground: #061319;
+  --sidebar-accent: #142129;
+  --sidebar-accent-foreground: #edf3f5;
+  --sidebar-border: #283943;
+  --sidebar-ring: #2fc1e3;
 }
 
 /* -------------------------------------------------------------------------- */
@@ -541,7 +541,7 @@
       ),
       radial-gradient(
         circle at 78% 78%,
-        color-mix(in oklab, #ffb347 40%, transparent),
+        color-mix(in oklab, #82dcf0 40%, transparent),
         transparent 58%
       );
     filter: blur(28px);
@@ -788,7 +788,5 @@
   }
 }
 
-/* Personal cover: upstream editorial system, paired with an interactive badge. */
-.cover-with-badge{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.95fr);gap:32px;align-items:center}.cover-copy{padding:42px 0}.cover-copy .cover-name{font-size:clamp(54px,8.2vw,125px);line-height:.88}.cover-native{font-family:Arial,sans-serif;font-size:14px;letter-spacing:.02em;margin-top:22px;color:var(--foreground)}.cover-badge{min-width:0}.dark{--primary:#d96832;--ring:#d96832;--primary-foreground:#100c09}html{scroll-padding-top:80px}
+html{scroll-padding-top:80px}
 @font-face{font-family:Obel;src:url('/fonts/obel/ObelMono-VF.woff2') format('woff2');font-weight:100 900;font-display:swap}
-@media(max-width:750px){.cover-with-badge{grid-template-columns:1fr;gap:0}.cover-copy{padding:28px 0 0}.cover-copy .cover-name{font-size:clamp(50px,13.5vw,90px);line-height:.9}.cover-copy .cover-name>span{display:inline!important;margin-right:.12em}.cover-badge{margin-top:-8px}.cover-copy .cover-name>span:first-child{font-weight:300}.cover-copy>p:not(.label){max-width:100%}}

@@ -4,7 +4,7 @@ Website được phát triển trực tiếp từ bản clone của [qminh77/pro
 
 ## Giao diện hiện tại
 
-Bố cục editorial từ qminh77/profile (b1d6f29), font Obel Mono và thẻ lanyard 3D tương tác ở trang đầu. Ảnh thẻ giữ màu gốc, tỷ lệ dọc 4:6; có thể kéo và bấm để lật xem mặt sau. Tông đen, đỏ trầm, cam cháy. Toolkit và cả hai CV PDF có Neon trong mục Databases. `/lab/` dùng chung giao diện với trang chính.
+Bố cục editorial từ qminh77/profile (b1d6f29), font Obel Mono và thẻ lanyard 3D tương tác ở trang đầu. Ảnh thẻ giữ màu gốc, tỷ lệ dọc 4:6; có thể kéo và bấm để lật xem mặt sau. Tông đen than, trắng và cyan đồng bộ với dây UMT; logo trường giữ màu gốc. Heatmap có bảng màu riêng cho giao diện sáng và tối. Toolkit và cả hai CV PDF có Neon trong mục Databases. `/lab/` dùng chung giao diện với trang chính.
 
 ## Nội dung
 
