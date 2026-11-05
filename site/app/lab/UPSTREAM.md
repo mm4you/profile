@@ -1,1 +1,3 @@
 The ThreeLanyard component is adapted from React Bits Lanyard, fetched from https://reactbits.dev/r/Lanyard-TS-TW.json on 2026-11-05. Original Three.js physics, materials and strap rendering retained. Added personal textures, a reader, drop callback and insertion sequence. Source: https://github.com/DavidHDev/react-bits . Font: Obel Mono, SIL OFL, license included in public/fonts/obel/OFL.txt.
+
+UMT strap print: original vector reconstruction in public/umt-lanyard.svg, based on the owner's supplied strap photograph and clean university logo reference. Textile shading and print offset tuned in the 3D view; no external brand asset was downloaded.

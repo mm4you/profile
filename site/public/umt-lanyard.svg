@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="112" viewBox="0 0 1280 112">
+  <title>UMT School of Technology lanyard print</title>
+  <desc>Reconstructed from the portfolio owner's university lanyard photograph and supplied university mark.</desc>
+  <defs>
+    <linearGradient id="technology" x1="0" y1="0" x2="1" y2="0">
+      <stop stop-color="#3d3bcd"/><stop offset="1" stop-color="#53c9e3"/>
+    </linearGradient>
+    <path id="arrow" d="M0 0h23l31 40-31 40H0l31-40z"/>
+  </defs>
+  <path fill="#080b0d" d="M0 0h1280v112H0z"/>
+  <path stroke="#23282a" stroke-width="1" d="M0 3.5h1280M0 108.5h1280"/>
+  <g fill="#009ceb" transform="translate(24 16)">
+    <use href="#arrow"/><use href="#arrow" x="52"/><use href="#arrow" x="104"/>
+    <use href="#arrow" x="1050"/><use href="#arrow" x="1102"/><use href="#arrow" x="1154"/>
+  </g>
+  <text x="302" y="80" fill="#f8faf9" font-family="Arial,Helvetica,sans-serif" font-weight="800" font-size="62" letter-spacing="7">UMT</text>
+  <g transform="translate(480 18) scale(.24)">
+    <path fill="#ed1b2f" d="M0 75h75v75H59V91H0zm0 21h54v54H38v-38H0z"/>
+    <path fill="#2fc1e3" d="M75 0h16v59h59v16H75zm21 0h16v38h38v16H96z"/>
+  </g>
+  <text x="528" y="47" fill="#f8faf9" font-family="Arial,Helvetica,sans-serif" font-weight="800" font-size="34" letter-spacing="2.5">SCHOOL OF</text>
+  <path fill="url(#technology)" d="M529 57h301v38H529z"/>
+  <text x="534" y="87" fill="#fff" font-family="Arial,Helvetica,sans-serif" font-weight="800" font-size="34" letter-spacing="1.3">TECHNOLOGY</text>
+</svg>

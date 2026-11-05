@@ -38,6 +38,7 @@ export interface LanyardProps {
   anchor?: Anchor;
   strapLength?: number;
   strapImage?: string;
+  strapOffset?: number;
   strapColor?: string;
   strapWidth?: number;
   metal?: Metal;
@@ -63,6 +64,7 @@ interface Settings {
   anchor: Anchor;
   strapLength: number;
   strapImage?: string;
+  strapOffset: number;
   strapColor: string;
   strapWidth: number;
   metal: Metal;
@@ -606,7 +608,7 @@ const paintFace = (canvas: HTMLCanvasElement, image: HTMLImageElement | null, co
 };
 
 const paintStrap = (canvas: HTMLCanvasElement, image: HTMLImageElement | null, color: Rgb) => {
-  const across = 192;
+  const across = 256;
   const along = image ? Math.max(64, Math.round((image.width / image.height) * across)) : across * 2;
   canvas.width = across;
   canvas.height = along;
@@ -888,6 +890,7 @@ const Lanyard = ({
   anchor = 'center',
   strapLength = 0.5,
   strapImage,
+  strapOffset = 0,
   strapColor = '#111111',
   strapWidth = 0.65,
   metal = 'silver',
@@ -918,6 +921,7 @@ const Lanyard = ({
     anchor,
     strapLength,
     strapImage,
+    strapOffset,
     strapColor,
     strapWidth,
     metal,
@@ -1038,10 +1042,10 @@ const Lanyard = ({
     const bandMaterial = new THREE.MeshPhysicalMaterial({
       map: strapTexture,
       normalMap: weave,
-      normalScale: new THREE.Vector2(0.7, 0.7),
-      roughness: 0.68,
-      sheen: 1,
-      sheenRoughness: 0.42,
+      normalScale: new THREE.Vector2(0.28, 0.28),
+      roughness: 0.82,
+      sheen: 0.55,
+      sheenRoughness: 0.72,
       sheenColor: new THREE.Color(0.32, 0.32, 0.34),
       side: THREE.DoubleSide
     });
@@ -1190,6 +1194,7 @@ const Lanyard = ({
       const faceKey = `${layoutKey}|${s.cardColor}|${s.imageFit}`;
       if (faceKey !== applied.faceKey) paintFaces();
       if (s.strapColor !== applied.strapColor) repaintStrap();
+      strapTexture.offset.y = s.strapOffset;
 
       const finish = FINISHES[s.finish] || FINISHES.glossy;
       const card = parseColor(s.cardColor, [1, 1, 1]);

@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from 'react'
 import dynamic from 'next/dynamic'
 import s from './entry.module.css'
+import { asset } from '@/lib/profile'
 
 const Lanyard = dynamic(() => import('./ThreeLanyard'), { ssr: false })
 
@@ -61,44 +62,6 @@ function drawCardBack(g:CanvasRenderingContext2D,vi:boolean){
   g.fillStyle='#b9afa1';g.font=`400 26px ${mono}`;g.fillText('ungnhutkhang.id.vn',60,1340)
   g.font=`500 20px ${mono}`;g.fillStyle='#84766a';g.fillText('GITHUB / MM4YOU',60,1390);g.textAlign='right';g.fillText('HCMC, VN',964,1390);g.textAlign='left'
 }
-// Reconstructed from the owner's UMT School of Technology lanyard photo.
-// Draw the print cleanly, retaining the 3D renderer's woven fabric normal map.
-function drawStrap(b:CanvasRenderingContext2D){
-  const W=1000,H=160
-  b.fillStyle='#080c0d';b.fillRect(0,0,W,H)
-  b.fillStyle='#242a2c';b.fillRect(0,3,W,2);b.fillRect(0,H-5,W,2)
-  b.fillStyle='rgba(255,255,255,.025)'
-  for(let y=8;y<H-7;y+=4)b.fillRect(0,y,W,1)
-
-  const chevron=(x:number)=>{
-    b.beginPath();b.moveTo(x,27);b.lineTo(x+27,27);b.lineTo(x+66,80)
-    b.lineTo(x+27,133);b.lineTo(x,133);b.lineTo(x+39,80);b.closePath();b.fill()
-  }
-  b.fillStyle='#009cf4'
-  ;[20,78,136,806,864,922].forEach(chevron)
-
-  b.fillStyle='#f7faf8';b.font='800 82px Arial,sans-serif'
-  b.fillText('UMT',218,107)
-  // Geometry from the supplied clean logo: equal arms, 16-unit strokes,
-  // 5-unit negative spaces, and the two outer corners meeting at the centre.
-  b.save();b.translate(408,30);b.scale(.36,.36)
-  b.fillStyle='#ed1b2f'
-  b.fillRect(0,75,75,16);b.fillRect(59,75,16,75)
-  b.fillRect(0,96,54,16);b.fillRect(38,96,16,54)
-  b.fillStyle='#2fc1e3'
-  b.fillRect(75,0,16,75);b.fillRect(75,59,75,16)
-  b.fillRect(96,0,16,54);b.fillRect(96,38,54,16)
-  b.restore()
-
-  b.fillStyle='#f7faf8';b.font='800 35px Arial,sans-serif'
-  b.fillText('SCHOOL OF',470,66)
-  const ink=b.createLinearGradient(470,0,775,0)
-  ink.addColorStop(0,'#373bd4');ink.addColorStop(1,'#55cbe6')
-  b.fillStyle=ink;b.fillRect(469,78,307,47)
-  b.fillStyle='#ffffff';b.font='800 37px Arial,sans-serif'
-  b.fillText('TECHNOLOGY',474,115)
-}
-
 export default function Entry({ vi, onOpen, cardOnly=false }: EntryProps) {
   const [art, setArt] = useState<{ front: string; back: string; strap: string } | null>(null)
   const [ready, setReady] = useState(false)
@@ -142,17 +105,10 @@ export default function Entry({ vi, onOpen, cardOnly=false }: EntryProps) {
         const bg = bc.getContext('2d')
         if (bg) drawCardBack(bg, vi)
 
-        // Strap Canvas
-        const sc = document.createElement('canvas')
-        sc.width = 1000
-        sc.height = 160
-        const sg = sc.getContext('2d')
-        if (sg) drawStrap(sg)
-
         setArt({
           front: fc.toDataURL('image/png'),
           back: bc.toDataURL('image/png'),
-          strap: sc.toDataURL('image/png'),
+          strap: asset('umt-lanyard.svg'),
         })
       } catch {
         if (alive) {
@@ -180,7 +136,7 @@ export default function Entry({ vi, onOpen, cardOnly=false }: EntryProps) {
       <div className={s.actions}><button onClick={onOpen}>{vi?'Xem các dự án':'Explore my work'} ↓</button><a href={vi?'/cv-ung-nhut-khang.pdf':'/cv-ung-nhut-khang-en.pdf'} target="_blank" rel="noopener noreferrer">{vi?'Tải CV':'Download CV'} ↗</a></div>
     </div>}
     <div className={s.scene} ref={scene}>
-      {art&&<Lanyard frontImage={art.front} backImage={art.back} strapImage={art.strap||undefined} size={.63} anchor={wide?"right":"center"} strapLength={.32} strapWidth={.58} finish="matte" metal="graphite" cardColor="#231b14" strapColor="#080c0d" breeze={.1} damping={.65} cornerRadius={.16} showReader={false} onReady={()=>setReady(true)} onUnsupported={()=>setFailed(true)}/>}
+      {art&&<Lanyard frontImage={art.front} backImage={art.back} strapImage={art.strap||undefined} strapOffset={.52} size={.63} anchor={wide?"right":"center"} strapLength={.32} strapWidth={.58} finish="matte" metal="graphite" cardColor="#231b14" strapColor="#080c0d" breeze={.1} damping={.65} cornerRadius={.16} showReader={false} onReady={()=>setReady(true)} onUnsupported={()=>setFailed(true)}/>}
       {failed&&<div className={s.fallback}><img src="/profile.jpg" alt="Ưng Nhựt Khang"/><strong>Ưng Nhựt Khang</strong></div>}
       <div className={s.instruction}>{ready?(vi?'Kéo để xoay · Chạm để lật':'Drag to move · Tap to flip'):(vi?'Đang chuẩn bị thẻ…':'Preparing your card…')}</div>
     </div>
