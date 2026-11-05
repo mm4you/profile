@@ -66,12 +66,14 @@ export function Navbar() {
             className="group flex shrink-0 items-center gap-2"
             aria-label={`${site.name} — back to cover`}
           >
-            <span
+            <img
+              src={asset('umt-logo.svg')}
+              alt=""
               aria-hidden="true"
-              className="inline-block translate-y-[-1px] font-mono text-[22px] font-bold leading-none text-primary transition-transform duration-200 group-hover:rotate-45"
-            >
-              *
-            </span>
+              width={24}
+              height={24}
+              className="size-6 shrink-0 transition-opacity duration-200 group-hover:opacity-80"
+            />
             <span className="font-mono text-[11px] font-medium uppercase tracking-[0.12em] text-foreground">
               {site.shortName}
             </span>
