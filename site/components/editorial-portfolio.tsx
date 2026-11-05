@@ -13,7 +13,7 @@ import {asset,identity,getProjects} from '@/lib/profile'
 import Entry from '@/app/lab/Entry'
 
 function MagneticName({text}:{text:string}){
- return <>{Array.from(text).map((letter,index)=>letter===' '?' ':<span key={index} className={styles.nameLetter} style={{'--depth':3+(index%4)*2} as CSSProperties}>{letter}</span>)}</>
+ return <>{Array.from(text).map((letter,index)=>letter===' '?<span key={index} className={styles.nameSpace}/>:<span key={index} className={styles.nameLetter} style={{'--depth':3+(index%4)*2} as CSSProperties}>{letter}</span>)}</>
 }
 
 export default function EditorialPortfolio(){

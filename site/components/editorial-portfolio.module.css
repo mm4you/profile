@@ -1,11 +1,11 @@
-.cover{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:32px;align-items:center}.copy{padding:42px 0;min-width:0;container-type:inline-size}.copy h1{font-size:clamp(32px,16cqw,104px);line-height:.95}.native{font-family:Arial,sans-serif;font-size:14px;letter-spacing:.02em;margin-top:22px;color:var(--foreground)}.badge{min-width:0;position:relative;align-self:stretch;display:flex;align-items:flex-start;padding-top:0;margin-top:-45px}.badge>section{margin:0!important}@media(max-width:750px){.cover{grid-template-columns:1fr;gap:0}.copy{padding:28px 0 0}.copy h1{font-size:clamp(28px,16cqw,72px);line-height:.95}.badge{margin-top:-8px}.copy h1>span:first-child{font-weight:300}}
+.cover{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:32px;align-items:center}.copy{padding:42px 0;min-width:0;container-type:inline-size}.copy h1{font-size:clamp(34px,17.5cqw,124px);line-height:.95}.native{font-family:Arial,sans-serif;font-size:14px;letter-spacing:.02em;margin-top:22px;color:var(--foreground)}.badge{min-width:0;position:relative;align-self:stretch;display:flex;align-items:flex-start;padding-top:0;margin-top:-45px}.badge>section{margin:0!important}@media(max-width:750px){.cover{grid-template-columns:1fr;gap:0}.copy{padding:28px 0 0}.copy h1{font-size:clamp(30px,17.5cqw,84px);line-height:.95}.badge{margin-top:-8px}.copy h1>span:first-child{font-weight:300}}
 @media(min-width:751px){.badge{height:calc(100% + 45px)}}
 
 @media(max-width:750px){.badge{margin-top:0;height:auto;padding-top:0}}
 
 .copy{position:relative;z-index:2;pointer-events:none}.copy a,.copy button{pointer-events:auto}
 
-@media(max-width:750px){.copy h1>span:last-child{word-spacing:-.2em}}
+.nameSpace{display:inline-block;width:.22em;letter-spacing:0;word-spacing:0}
 
 .nameLine{display:inline-block;animation:name-reveal 1.05s var(--ease) .08s both}
 .nameLineSecond{animation-delay:.2s}
