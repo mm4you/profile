@@ -78,10 +78,14 @@ function drawStrap(b:CanvasRenderingContext2D){
   ;[20,78,136,806,864,922].forEach(chevron)
 
   b.fillStyle='#f7faf8';b.font='800 82px Arial,sans-serif'
-  b.fillText('UMT',230,107)
-  // Small red/cyan corner mark beside the university wordmark.
-  b.fillStyle='#f32646';b.fillRect(408,47,22,7);b.fillRect(423,47,7,23)
-  b.fillStyle='#56c7e9';b.fillRect(433,32,7,22);b.fillRect(433,47,23,7)
+  b.fillText('UMT',218,107)
+  // Paired nested corners, matched to the supplied close-up of the UMT mark.
+  b.fillStyle='#df1434'
+  b.fillRect(408,62,24,6);b.fillRect(426,62,6,28)
+  b.fillRect(408,71,15,6);b.fillRect(417,71,6,19)
+  b.fillStyle='#40b9d7'
+  b.fillRect(432,30,6,28);b.fillRect(432,52,24,6)
+  b.fillRect(441,30,6,19);b.fillRect(441,43,15,6)
 
   b.fillStyle='#f7faf8';b.font='800 35px Arial,sans-serif'
   b.fillText('SCHOOL OF',470,66)
