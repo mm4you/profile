@@ -66,13 +66,16 @@ export function Navbar() {
             className="group flex shrink-0 items-center gap-2"
             aria-label={`${site.name} — back to cover`}
           >
+            <span className="font-mono text-[10px] font-medium uppercase tracking-[0.12em] text-foreground sm:text-[11px]">
+              {site.shortName}
+            </span>
             <img
               src={asset('umt-wordmark.svg')}
               alt=""
               aria-hidden="true"
               width={160}
               height={28}
-              className="block h-auto w-[136px] shrink-0 dark:hidden sm:w-40"
+              className="block h-auto w-24 shrink-0 dark:hidden sm:w-40"
             />
             <img
               src={asset('umt-wordmark-dark.svg')}
@@ -80,11 +83,8 @@ export function Navbar() {
               aria-hidden="true"
               width={160}
               height={28}
-              className="hidden h-auto w-[136px] shrink-0 dark:block sm:w-40"
+              className="hidden h-auto w-24 shrink-0 dark:block sm:w-40"
             />
-            <span className="hidden font-mono text-[11px] font-medium uppercase tracking-[0.12em] text-foreground sm:inline">
-              {site.shortName}
-            </span>
             <span aria-hidden="true" className="label hidden 2xl:inline">
               /
             </span>
