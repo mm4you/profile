@@ -1,6 +1,6 @@
 "use client"
 import styles from "./editorial-portfolio.module.css"
-import {useState} from 'react'
+import {useState, type PointerEvent} from 'react'
 import {Navbar} from './nav'
 import {Chapter} from './chapter'
 import {CodeRain} from './code-rain'
@@ -15,11 +15,18 @@ import Entry from '@/app/lab/Entry'
 export default function EditorialPortfolio(){
  const {language,t}=useLanguage(),vi=language==='vi'
  const [filter,setFilter]=useState('all')
+ const trackPointer=(event:PointerEvent<HTMLElement>)=>{
+  if(event.pointerType==='touch') return
+  const target=event.currentTarget,rect=target.getBoundingClientRect()
+  target.style.setProperty('--spot-x',`${event.clientX-rect.left}px`)
+  target.style.setProperty('--spot-y',`${event.clientY-rect.top}px`)
+ }
+
  const projects=getProjects(language),shown=projects.filter(p=>filter==='all'||p.category===filter)
  const copyLabels=vi?['Giao diện','Backend','Cơ sở dữ liệu','Công cụ']:['Interface','Backend','Databases','Tools']
  const stacks=[['JavaScript','TypeScript','React','Next.js','Tailwind CSS','Responsive UI'],['Next.js API Routes','RESTful API','Prisma ORM','Authentication'],['PostgreSQL','MySQL','Supabase','Neon'],['Git','GitHub','Vercel']]
  return <div className="min-h-screen bg-background text-foreground font-sans"><Navbar/><main id="main">
- <section id="top" className="hero-spotlight relative overflow-hidden border-b border-border">
+ <section id="top" onPointerMove={trackPointer} className="hero-spotlight relative overflow-hidden border-b border-border">
  <BinaryField/><CodeRain className="opacity-45"/>
  <div className="shell relative z-10">
  <div className="hero-in flex flex-wrap items-center justify-between gap-2 border-b border-border/70 py-3"><p className="label">( F/01 ) <span className="text-foreground">Portfolio</span> · 2026</p><p className="label flex items-center gap-2"><span className="status-dot size-1.5 bg-primary"/>HCMC <LocalTime/> · GMT+7</p></div>
