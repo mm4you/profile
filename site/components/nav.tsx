@@ -67,25 +67,33 @@ export function Navbar() {
             aria-label={`${site.name} — back to cover`}
           >
             <img
-              src={asset('umt-logo.svg')}
+              src={asset('umt-wordmark.svg')}
               alt=""
               aria-hidden="true"
-              width={24}
-              height={24}
-              className="size-6 shrink-0 transition-opacity duration-200 group-hover:opacity-80"
+              width={160}
+              height={28}
+              className="block h-auto w-[136px] shrink-0 dark:hidden sm:w-40"
             />
-            <span className="font-mono text-[11px] font-medium uppercase tracking-[0.12em] text-foreground">
+            <img
+              src={asset('umt-wordmark-dark.svg')}
+              alt=""
+              aria-hidden="true"
+              width={160}
+              height={28}
+              className="hidden h-auto w-[136px] shrink-0 dark:block sm:w-40"
+            />
+            <span className="hidden font-mono text-[11px] font-medium uppercase tracking-[0.12em] text-foreground sm:inline">
               {site.shortName}
             </span>
-            <span aria-hidden="true" className="label hidden sm:inline">
+            <span aria-hidden="true" className="label hidden 2xl:inline">
               /
             </span>
-            <span className="label hidden sm:inline">web developer</span>
+            <span className="label hidden 2xl:inline">web developer</span>
           </Link>
 
           <nav
             aria-label="Chapters"
-            className="hidden items-center gap-5 lg:flex"
+            className="hidden items-center gap-5 xl:flex"
           >
             {chapters.map((chapter) => {
               const isActive = active === chapter.id
@@ -131,7 +139,7 @@ export function Navbar() {
             <Button
               variant="outline"
               size="icon-sm"
-              className="lg:hidden"
+              className="xl:hidden"
               onClick={() => setMenuOpen(true)}
               aria-label="Open navigation"
             >
