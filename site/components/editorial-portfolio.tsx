@@ -1,6 +1,6 @@
 "use client"
 import styles from "./editorial-portfolio.module.css"
-import {useState, type PointerEvent} from 'react'
+import {useState, type PointerEvent, type CSSProperties} from 'react'
 import {Navbar} from './nav'
 import {Chapter} from './chapter'
 import {CodeRain} from './code-rain'
@@ -12,26 +12,36 @@ import {useLanguage} from './language-provider'
 import {asset,identity,getProjects} from '@/lib/profile'
 import Entry from '@/app/lab/Entry'
 
+function MagneticName({text}:{text:string}){
+ return <>{Array.from(text).map((letter,index)=>letter===' '?' ':<span key={index} className={styles.nameLetter} style={{'--depth':3+(index%4)*2} as CSSProperties}>{letter}</span>)}</>
+}
+
 export default function EditorialPortfolio(){
  const {language,t}=useLanguage(),vi=language==='vi'
  const [filter,setFilter]=useState('all')
  const trackPointer=(event:PointerEvent<HTMLElement>)=>{
-  if(event.pointerType==='touch') return
+  if(event.pointerType!=='mouse') return
   const target=event.currentTarget,rect=target.getBoundingClientRect()
   target.style.setProperty('--spot-x',`${event.clientX-rect.left}px`)
   target.style.setProperty('--spot-y',`${event.clientY-rect.top}px`)
+  target.style.setProperty('--hero-mx',`${((event.clientX-rect.left)/rect.width-.5)*2}`)
+  target.style.setProperty('--hero-my',`${((event.clientY-rect.top)/rect.height-.5)*2}`)
  }
 
+ const resetPointer=(event:PointerEvent<HTMLElement>)=>{
+  event.currentTarget.style.removeProperty('--hero-mx')
+  event.currentTarget.style.removeProperty('--hero-my')
+ }
  const projects=getProjects(language),shown=projects.filter(p=>filter==='all'||p.category===filter)
  const copyLabels=vi?['Giao diện','Backend','Cơ sở dữ liệu','Công cụ']:['Interface','Backend','Databases','Tools']
  const stacks=[['JavaScript','TypeScript','React','Next.js','Tailwind CSS','Responsive UI'],['Next.js API Routes','RESTful API','Prisma ORM','Authentication'],['PostgreSQL','MySQL','Supabase','Neon'],['Git','GitHub','Vercel']]
  return <div className="min-h-screen bg-background text-foreground font-sans"><Navbar/><main id="main">
- <section id="top" onPointerMove={trackPointer} className="hero-spotlight relative overflow-hidden border-b border-border">
+ <section id="top" onPointerMove={trackPointer} onPointerLeave={resetPointer} className="hero-spotlight relative overflow-hidden border-b border-border">
  <BinaryField/><CodeRain className="opacity-45"/>
  <div className="shell relative z-10">
  <div className="hero-in flex flex-wrap items-center justify-between gap-2 border-b border-border/70 py-3"><p className="label">( F/01 ) <span className="text-foreground">Portfolio</span> · 2026</p><p className="label flex items-center gap-2"><span className="status-dot size-1.5 bg-primary"/>HCMC <LocalTime/> · GMT+7</p></div>
  <div className={styles.cover}>
-  <div className={styles.copy}><p className="label label-accent">00 / {vi?'Giới thiệu':'Cover'}</p><h1 className="cover-name mt-6"><span className="block font-extralight">UNG</span><span className="block whitespace-nowrap font-semibold">NHUT KHANG<span className="text-primary">.</span></span></h1><p className={styles.native}>Ưng Nhựt Khang / Web Developer</p><p className="max-w-md text-[12px] leading-relaxed text-muted-foreground mt-6">{t.bio}</p><div className="mt-6 flex flex-wrap gap-2"><Button asChild><a href={asset(t.pdfFile)} target="_blank" rel="noopener noreferrer">{t.download} ↓</a></Button><CopyEmail/><Button asChild variant="ghost"><a href={identity.github} target="_blank" rel="noopener noreferrer">GitHub ↗</a></Button></div><a href="#work" className="label inline-block mt-7 hover:text-primary">{vi?'Cuộn xem các dự án':'Scroll to selected work'} ↓</a></div>
+  <div className={styles.copy}><p className="label label-accent">00 / {vi?'Giới thiệu':'Cover'}</p><h1 aria-label="Ung Nhut Khang" className="cover-name mt-6"><span aria-hidden="true" className="block font-extralight"><span className={styles.nameLine}><MagneticName text="UNG"/></span></span><span aria-hidden="true" className="block whitespace-nowrap font-semibold"><span className={`${styles.nameLine} ${styles.nameLineSecond}`}><MagneticName text="NHUT KHANG"/><span className="text-primary"><MagneticName text="."/></span></span></span></h1><p className={styles.native}>Ưng Nhựt Khang / Web Developer</p><p className="max-w-md text-[12px] leading-relaxed text-muted-foreground mt-6">{t.bio}</p><div className="mt-6 flex flex-wrap gap-2"><Button asChild><a href={asset(t.pdfFile)} target="_blank" rel="noopener noreferrer">{t.download} ↓</a></Button><CopyEmail/><Button asChild variant="ghost"><a href={identity.github} target="_blank" rel="noopener noreferrer">GitHub ↗</a></Button></div><a href="#work" className="label inline-block mt-7 hover:text-primary">{vi?'Cuộn xem các dự án':'Scroll to selected work'} ↓</a></div>
   <div className={styles.badge}><Entry vi={vi} cardOnly onOpen={()=>document.getElementById('work')?.scrollIntoView({behavior:'smooth'})}/></div>
  </div>
  <dl className="grid grid-cols-2 gap-5 border-t border-border py-5 md:grid-cols-4">{[{label:vi?'Dự án':'Projects',value:'06'},{label:'GPA',value:'3.31'},{label:vi?'Hackathon / Bán kết':'Hackathon / Semifinal',value:'Top 20'},{label:vi?'Dự kiến tốt nghiệp':'Expected graduation',value:'2028'}].map(s=><div key={s.label}><dt className="label">{s.label}</dt><dd className="stat-value mt-3">{s.value}</dd></div>)}</dl>

@@ -6,3 +6,9 @@
 .copy{position:relative;z-index:2;pointer-events:none}.copy a,.copy button{pointer-events:auto}
 
 @media(max-width:750px){.copy h1>span:last-child{word-spacing:-.2em}}
+
+.nameLine{display:inline-block;animation:name-reveal 1.05s var(--ease) .08s both}
+.nameLineSecond{animation-delay:.2s}
+.nameLetter{display:inline-block;transform:translate3d(calc(var(--hero-mx,0)*var(--depth)*1px),calc(var(--hero-my,0)*var(--depth)*1px),0);transition:transform .7s var(--ease)}
+@keyframes name-reveal{from{opacity:0;transform:translate3d(0,.16em,0)}to{opacity:1;transform:none}}
+@media(prefers-reduced-motion:reduce){.nameLine{animation:none}.nameLetter{transform:none;transition:none}}
