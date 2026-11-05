@@ -3,155 +3,792 @@
 
 @custom-variant dark (&:is(.dark *));
 
+/* -------------------------------------------------------------------------- */
+/*  Design tokens                                                              */
+/*  A typographic system built around Obel Mono: ink, paper, one signal orange. */
+/* -------------------------------------------------------------------------- */
+
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-  --color-sidebar-ring: var(--sidebar-ring);
-  --color-sidebar-border: var(--sidebar-border);
-  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
-  --color-sidebar-accent: var(--sidebar-accent);
-  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
-  --color-sidebar-primary: var(--sidebar-primary);
-  --color-sidebar-foreground: var(--sidebar-foreground);
-  --color-sidebar: var(--sidebar);
-  --color-chart-5: var(--chart-5);
-  --color-chart-4: var(--chart-4);
-  --color-chart-3: var(--chart-3);
-  --color-chart-2: var(--chart-2);
-  --color-chart-1: var(--chart-1);
-  --color-ring: var(--ring);
-  --color-input: var(--input);
-  --color-border: var(--border);
-  --color-destructive: var(--destructive);
-  --color-accent-foreground: var(--accent-foreground);
-  --color-accent: var(--accent);
-  --color-muted-foreground: var(--muted-foreground);
-  --color-muted: var(--muted);
-  --color-secondary-foreground: var(--secondary-foreground);
-  --color-secondary: var(--secondary);
-  --color-primary-foreground: var(--primary-foreground);
-  --color-primary: var(--primary);
-  --color-popover-foreground: var(--popover-foreground);
-  --color-popover: var(--popover);
-  --color-card-foreground: var(--card-foreground);
   --color-card: var(--card);
-  --radius-sm: calc(var(--radius) - 4px);
-  --radius-md: calc(var(--radius) - 2px);
-  --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) + 4px);
-  --radius-2xl: calc(var(--radius) + 8px);
-  --radius-3xl: calc(var(--radius) + 12px);
-  --radius-4xl: calc(var(--radius) + 16px);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+
+  --font-sans: var(--font-obel), ui-monospace, SFMono-Regular, Menlo, Monaco,
+    Consolas, "Liberation Mono", monospace;
+  --font-mono: var(--font-obel), ui-monospace, SFMono-Regular, Menlo, Monaco,
+    Consolas, "Liberation Mono", monospace;
+
+  /* The system has no rounded corners. */
+  --radius-sm: 0px;
+  --radius-md: 0px;
+  --radius-lg: 0px;
+  --radius-xl: 0px;
+  --radius-2xl: 0px;
+  --radius-3xl: 0px;
+  --radius-4xl: 0px;
 }
 
 :root {
-  --radius: 0.625rem;
-  --background: oklch(0.99 0.002 240);
-  --foreground: oklch(0.18 0.02 260);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.18 0.02 260);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.18 0.02 260);
-  --primary: oklch(0.40 0.12 245);
-  --primary-foreground: oklch(0.99 0 0);
-  --secondary: oklch(0.96 0.006 240);
-  --secondary-foreground: oklch(0.25 0.03 260);
-  --muted: oklch(0.96 0.006 240);
-  --muted-foreground: oklch(0.50 0.02 260);
-  --accent: oklch(0.95 0.015 245);
-  --accent-foreground: oklch(0.20 0.03 260);
-  --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.91 0.006 240);
-  --input: oklch(0.91 0.006 240);
-  --ring: oklch(0.40 0.12 245 / 30%);
-  --chart-1: oklch(0.40 0.12 245);
-  --chart-2: oklch(0.6 0.118 184.704);
-  --chart-3: oklch(0.398 0.07 227.392);
-  --chart-4: oklch(0.828 0.189 84.429);
-  --chart-5: oklch(0.769 0.188 70.08);
-  --sidebar: oklch(0.985 0.002 240);
-  --sidebar-foreground: oklch(0.18 0.02 260);
-  --sidebar-primary: oklch(0.40 0.12 245);
-  --sidebar-primary-foreground: oklch(0.99 0 0);
-  --sidebar-accent: oklch(0.96 0.006 240);
-  --sidebar-accent-foreground: oklch(0.18 0.02 260);
-  --sidebar-border: oklch(0.91 0.006 240);
-  --sidebar-ring: oklch(0.40 0.12 245 / 30%);
+  --radius: 0px;
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+
+  /* Paper */
+  --background: #e9e8e3;
+  --foreground: #0b0b0b;
+  --card: #f2f1ec;
+  --card-foreground: #0b0b0b;
+  --popover: #f2f1ec;
+  --popover-foreground: #0b0b0b;
+
+  /* Signal */
+  --primary: #c93400;
+  --primary-foreground: #ffffff;
+
+  --secondary: #dedcd4;
+  --secondary-foreground: #0b0b0b;
+  --muted: #dedcd4;
+  --muted-foreground: #66665f;
+  --accent: #e1dfd7;
+  --accent-foreground: #0b0b0b;
+  --destructive: #b3261e;
+
+  --border: #c7c5bc;
+  --input: #c7c5bc;
+  --ring: #c93400;
+
+  --chart-1: #c93400;
+  --chart-2: #0b0b0b;
+  --chart-3: #66665f;
+  --chart-4: #8f8d85;
+  --chart-5: #b9b7ae;
+
+  --sidebar: #f2f1ec;
+  --sidebar-foreground: #0b0b0b;
+  --sidebar-primary: #c93400;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #dedcd4;
+  --sidebar-accent-foreground: #0b0b0b;
+  --sidebar-border: #c7c5bc;
+  --sidebar-ring: #c93400;
 }
 
 .dark {
-  --radius: 0.625rem;
-  --background: oklch(0.13 0.015 260);
-  --foreground: oklch(0.96 0.005 240);
-  --card: oklch(0.16 0.018 260);
-  --card-foreground: oklch(0.96 0.005 240);
-  --popover: oklch(0.16 0.018 260);
-  --popover-foreground: oklch(0.96 0.005 240);
-  --primary: oklch(0.70 0.13 245);
-  --primary-foreground: oklch(0.12 0.02 260);
-  --secondary: oklch(0.21 0.018 260);
-  --secondary-foreground: oklch(0.94 0.01 240);
-  --muted: oklch(0.20 0.015 260);
-  --muted-foreground: oklch(0.66 0.02 250);
-  --accent: oklch(0.22 0.025 255);
-  --accent-foreground: oklch(0.96 0.005 240);
-  --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(0.24 0.015 260);
-  --input: oklch(0.24 0.015 260);
-  --ring: oklch(0.70 0.13 245 / 40%);
-  --chart-1: oklch(0.70 0.13 245);
-  --chart-2: oklch(0.696 0.17 162.48);
-  --chart-3: oklch(0.769 0.188 70.08);
-  --chart-4: oklch(0.627 0.265 303.9);
-  --chart-5: oklch(0.645 0.246 16.439);
-  --sidebar: oklch(0.15 0.016 260);
-  --sidebar-foreground: oklch(0.96 0.005 240);
-  --sidebar-primary: oklch(0.70 0.13 245);
-  --sidebar-primary-foreground: oklch(0.12 0.02 260);
-  --sidebar-accent: oklch(0.20 0.015 260);
-  --sidebar-accent-foreground: oklch(0.96 0.005 240);
-  --sidebar-border: oklch(0.24 0.015 260);
-  --sidebar-ring: oklch(0.70 0.13 245 / 40%);
+  /* Ink */
+  --background: #000000;
+  --foreground: #f1f1ef;
+  --card: #0a0a0a;
+  --card-foreground: #f1f1ef;
+  --popover: #0a0a0a;
+  --popover-foreground: #f1f1ef;
+
+  /* Signal */
+  --primary: #ff3c05;
+  --primary-foreground: #050505;
+
+  --secondary: #161616;
+  --secondary-foreground: #f1f1ef;
+  --muted: #161616;
+  --muted-foreground: #8a8a88;
+  --accent: #1a1a1a;
+  --accent-foreground: #f1f1ef;
+  --destructive: #ff5b3a;
+
+  --border: #262626;
+  --input: #262626;
+  --ring: #ff3c05;
+
+  --chart-1: #ff3c05;
+  --chart-2: #f1f1ef;
+  --chart-3: #bdbdbb;
+  --chart-4: #8a8a88;
+  --chart-5: #3a3a38;
+
+  --sidebar: #0a0a0a;
+  --sidebar-foreground: #f1f1ef;
+  --sidebar-primary: #ff3c05;
+  --sidebar-primary-foreground: #050505;
+  --sidebar-accent: #161616;
+  --sidebar-accent-foreground: #f1f1ef;
+  --sidebar-border: #262626;
+  --sidebar-ring: #ff3c05;
 }
 
-@layer utilities {
-  .bg-subtle-grid {
-    background-size: 32px 32px;
-    background-image: 
-      linear-gradient(to right, rgba(0, 0, 0, 0.03) 1px, transparent 1px),
-      linear-gradient(to bottom, rgba(0, 0, 0, 0.03) 1px, transparent 1px);
-  }
-
-  .dark .bg-subtle-grid {
-    background-image: 
-      linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-      linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-  }
-}
+/* -------------------------------------------------------------------------- */
+/*  Base                                                                       */
+/* -------------------------------------------------------------------------- */
 
 @layer base {
   * {
-    @apply border-border outline-ring/50;
+    border-color: var(--border);
+  }
+
+  html {
+    background: var(--background);
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
   }
 
   body {
-    @apply bg-background text-foreground;
+    min-height: 100vh;
+    overflow-x: clip;
+    background: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    line-height: 1.55;
+    letter-spacing: 0.005em;
+    font-feature-settings: "cv01" 1;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-weight: inherit;
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  button {
+    font: inherit;
+  }
+
+  ::selection {
+    background: var(--primary);
+    color: var(--primary-foreground);
+  }
+
+  :focus-visible {
+    outline: 1px solid var(--primary);
+    outline-offset: 3px;
   }
 }
-html { scroll-padding-top: 80px; }
-a:focus-visible, button:focus-visible { outline: 2px solid var(--primary); outline-offset: 4px; }
+
+/* -------------------------------------------------------------------------- */
+/*  System primitives                                                          */
+/* -------------------------------------------------------------------------- */
+
+@layer components {
+  .shell {
+    width: 100%;
+    max-width: 1440px;
+    margin-inline: auto;
+    padding-inline: clamp(20px, 3vw, 56px);
+  }
+
+  /* Small, tracked, uppercase metadata. The connective tissue of the system. */
+  .label {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    line-height: 1.25;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted-foreground);
+  }
+
+  .label-accent {
+    color: var(--primary);
+  }
+
+  .label-strong {
+    color: var(--foreground);
+  }
+
+  .display {
+    font-family: var(--font-mono);
+    font-weight: 200;
+    line-height: 0.86;
+    letter-spacing: -0.05em;
+    text-transform: uppercase;
+  }
+
+  .cover-name {
+    font-family: var(--font-mono);
+    font-size: clamp(48px, 14vw, 200px);
+    line-height: 0.82;
+    letter-spacing: -0.055em;
+    text-transform: uppercase;
+  }
+
+  .stat-value {
+    font-family: var(--font-mono);
+    font-size: clamp(30px, 3.4vw, 52px);
+    line-height: 0.9;
+    font-weight: 200;
+    letter-spacing: -0.04em;
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* A chapter is a rail of metadata + a body of evidence. */
+  .chapter {
+    display: grid;
+    grid-template-columns: minmax(0, 232px) minmax(0, 1fr);
+    column-gap: clamp(28px, 4.4vw, 76px);
+    margin-top: clamp(76px, 8vw, 132px);
+    padding-top: clamp(18px, 2vw, 26px);
+    border-top: 1px solid var(--border);
+    scroll-margin-top: 90px;
+  }
+
+  .chapter-rail {
+    position: sticky;
+    top: 96px;
+    align-self: start;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .chapter-index {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--primary);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .chapter-title {
+    font-family: var(--font-mono);
+    font-size: clamp(26px, 2.7vw, 38px);
+    font-weight: 300;
+    line-height: 0.94;
+    letter-spacing: -0.035em;
+    text-transform: uppercase;
+    color: var(--foreground);
+  }
+
+  .chapter-deck {
+    max-width: 24ch;
+    font-size: 12px;
+    line-height: 1.45;
+    color: var(--muted-foreground);
+    text-wrap: pretty;
+  }
+
+  .chapter-body {
+    min-width: 0;
+  }
+
+  .spec-list {
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    border-top: 1px solid var(--border);
+  }
+
+  .spec-row {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 14px;
+    padding: 6px 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .spec-row dt {
+    font-size: 9px;
+    line-height: 1.3;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted-foreground);
+  }
+
+  .spec-row dd {
+    margin: 0;
+    text-align: right;
+    font-size: 10px;
+    line-height: 1.3;
+    letter-spacing: 0.02em;
+    color: var(--foreground);
+  }
+
+  .plate {
+    border: 1px solid var(--border);
+    background: var(--card);
+  }
+
+  .rule-link {
+    box-shadow: inset 0 -1px 0 var(--border);
+    transition:
+      color 120ms steps(2, end),
+      box-shadow 120ms steps(2, end);
+  }
+
+  .rule-link:hover {
+    color: var(--primary);
+    box-shadow: inset 0 -1px 0 var(--primary);
+  }
+
+  /* Digital rain: falling code, masked into the paper. */
+  .code-rain {
+    -webkit-mask-image: linear-gradient(
+      to bottom,
+      #000 0%,
+      #000 72%,
+      transparent 100%
+    );
+    mask-image: linear-gradient(
+      to bottom,
+      #000 0%,
+      #000 72%,
+      transparent 100%
+    );
+  }
+
+  /* Static binary texture keeps the paper from reading as empty. */
+  .binary-field {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+    user-select: none;
+    color: var(--foreground);
+    opacity: 0.06;
+    font-family: var(--font-mono);
+    font-size: 9px;
+    line-height: 1.6;
+    letter-spacing: 0.18em;
+    white-space: nowrap;
+    -webkit-mask-image: linear-gradient(
+      to bottom,
+      #000 0%,
+      #000 76%,
+      transparent 100%
+    );
+    mask-image: linear-gradient(
+      to bottom,
+      #000 0%,
+      #000 76%,
+      transparent 100%
+    );
+  }
+
+  .binary-field > span {
+    display: block;
+  }
+
+  /* A tiny runtime window, typed in place. */
+  .terminal {
+    background-image: radial-gradient(
+      circle at 82% 0%,
+      color-mix(in oklab, var(--primary) 12%, transparent),
+      transparent 58%
+    );
+  }
+
+  .terminal-body {
+    min-height: 224px;
+  }
+
+  .terminal-scan {
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+      to bottom,
+      transparent 0 2px,
+      rgb(127 127 127 / 0.16) 2px 3px
+    );
+    opacity: 0.45;
+    pointer-events: none;
+  }
+
+  .terminal-cursor {
+    animation: cursor-blink 1.05s steps(1, end) infinite;
+  }
+
+  /* A scanner passes over the portrait without changing its colour. */
+  .portrait-scan {
+    overflow: hidden;
+    background: repeating-linear-gradient(
+      to bottom,
+      rgb(0 0 0 / 0.1) 0 1px,
+      transparent 1px 4px
+    );
+    opacity: 0.22;
+    mix-blend-mode: multiply;
+    transition: opacity 0.4s var(--ease);
+  }
+
+  .portrait-frame:hover .portrait-scan {
+    opacity: 0.38;
+  }
+
+  .portrait-scan::after {
+    content: "";
+    position: absolute;
+    inset-inline: 0;
+    top: -25%;
+    height: 18%;
+    background: linear-gradient(
+      to bottom,
+      transparent,
+      color-mix(in oklab, var(--primary) 58%, transparent),
+      transparent
+    );
+    opacity: 0.6;
+    animation: portrait-scan 5.6s linear infinite;
+  }
+
+  /* Scroll reveal: content arrives from below, once. */
+  .reveal {
+    opacity: 0;
+    transform: translate3d(0, 26px, 0);
+    transition:
+      opacity 0.8s var(--ease),
+      transform 0.8s var(--ease);
+    will-change: opacity, transform;
+  }
+
+  .reveal.is-visible {
+    opacity: 1;
+    transform: none;
+    will-change: auto;
+  }
+
+  .chapter-body {
+    position: relative;
+  }
+
+  .chapter-content {
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Oversized ghost numeral; the section index becomes architecture. */
+  .chapter-watermark {
+    position: absolute;
+    top: -0.46em;
+    right: -0.04em;
+    z-index: 0;
+    font-family: var(--font-mono);
+    font-size: clamp(120px, 14vw, 220px);
+    font-weight: 100;
+    line-height: 0.8;
+    letter-spacing: -0.07em;
+    color: transparent;
+    -webkit-text-stroke: 1px var(--border);
+    opacity: 0.7;
+    pointer-events: none;
+    user-select: none;
+  }
+
+  /* Hero spotlight follows the pointer through two CSS variables. */
+  .hero-spotlight::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    background: radial-gradient(
+      620px circle at var(--spot-x, 74%) var(--spot-y, 26%),
+      color-mix(in oklab, var(--primary) 12%, transparent),
+      transparent 62%
+    );
+    transition: background 0.18s linear;
+  }
+
+  .portrait-glow {
+    background:
+      radial-gradient(
+        circle at 30% 20%,
+        color-mix(in oklab, var(--primary) 55%, transparent),
+        transparent 62%
+      ),
+      radial-gradient(
+        circle at 78% 78%,
+        color-mix(in oklab, #ffb347 40%, transparent),
+        transparent 58%
+      );
+    filter: blur(28px);
+  }
+
+  .portrait-frame {
+    transform: rotate(1.4deg);
+    transition: transform 0.7s var(--ease);
+  }
+
+  .portrait-frame:hover {
+    transform: rotate(0deg) translateY(-4px);
+  }
+
+  .portrait-frame img {
+    transition: transform 0.9s var(--ease);
+  }
+
+  .portrait-frame:hover img {
+    transform: scale(1.045);
+  }
+
+  /* Edge-to-edge type ticker. */
+  .ticker {
+    overflow: hidden;
+  }
+
+  .ticker-track {
+    display: flex;
+    width: max-content;
+    animation: ticker 38s linear infinite;
+  }
+
+  .ticker:hover .ticker-track {
+    animation-play-state: paused;
+  }
+
+  .ticker-group {
+    display: flex;
+    align-items: center;
+    gap: 1.75rem;
+    padding-right: 1.75rem;
+    white-space: nowrap;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted-foreground);
+  }
+
+  /* Project preview follows the cursor; a small, disposable plate. */
+  .project-preview {
+    opacity: 0;
+    transform: translate3d(-100px, -100px, 0);
+    transition:
+      opacity 0.16s steps(2, end),
+      transform 0.12s linear;
+  }
+
+  .project-preview.is-on {
+    opacity: 1;
+  }
+}
+
+@layer utilities {
+  /* Obel Mono opt-in features. */
+  .masked {
+    font-feature-settings:
+      "ss01" 1,
+      "cv01" 1;
+  }
+
+  .dotted-zero {
+    font-feature-settings: "cv01" 1;
+  }
+
+  .no-scrollbar {
+    scrollbar-width: none;
+  }
+
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* -------------------------------------------------------------------------- */
+/*  Motion                                                                     */
+/* -------------------------------------------------------------------------- */
+
+@keyframes ticker {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+@keyframes hero-in {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 26px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes status-pulse {
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.35;
+    transform: scale(0.72);
+  }
+}
+
+@keyframes cursor-blink {
+  0%,
+  49% {
+    opacity: 1;
+  }
+  50%,
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes portrait-scan {
+  0% {
+    transform: translateY(0);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.7;
+  }
+  85% {
+    opacity: 0.5;
+  }
+  100% {
+    transform: translateY(640%);
+    opacity: 0;
+  }
+}
+
+.hero-in {
+  animation: hero-in 0.9s var(--ease) both;
+}
+
+.hero-in-1 {
+  animation-delay: 0.08s;
+}
+
+.hero-in-2 {
+  animation-delay: 0.16s;
+}
+
+.hero-in-3 {
+  animation-delay: 0.24s;
+}
+
+.status-dot {
+  animation: status-pulse 2.4s ease-in-out infinite;
+}
+
+/* -------------------------------------------------------------------------- */
+/*  Responsive chapter rhythm                                                  */
+/* -------------------------------------------------------------------------- */
+
+@media (max-width: 1023px) {
+  .chapter {
+    grid-template-columns: minmax(0, 1fr);
+    row-gap: 30px;
+  }
+
+  .chapter-rail {
+    position: static;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    align-items: start;
+    gap: 10px 28px;
+  }
+
+  .chapter-index {
+    grid-column: 1 / -1;
+  }
+
+  .chapter-title {
+    grid-column: 1;
+  }
+
+  .chapter-deck {
+    grid-column: 1;
+    max-width: 34ch;
+  }
+
+  .chapter-rail .spec-list {
+    grid-column: 2;
+    grid-row: 2 / span 2;
+    align-self: start;
+  }
+}
+
+@media (max-width: 639px) {
+  .chapter-rail {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .chapter-title,
+  .chapter-deck,
+  .chapter-rail .spec-list {
+    grid-column: 1;
+    grid-row: auto;
+  }
+
+  .chapter-rail .spec-list {
+    margin-top: 6px;
+  }
+
+  .chapter-watermark {
+    top: -0.24em;
+    right: 0;
+    font-size: 88px;
+    opacity: 0.45;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
-  html { scroll-behavior: auto !important; }
-  *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }
-@media print {
-  @page { size: A4; margin: 12mm; }
-  :root, .dark { --background: #fff; --foreground: #111; --muted-foreground: #444; --border: #ddd; --primary: #234c67; --muted: #f5f5f5; }
-  body { font-size: 10pt; }
-  header.sticky, #github, button, [data-slot=dialog-portal] { display: none !important; }
-  main { padding: 0 !important; }
-  article { break-inside: avoid; }
-  h2, h3 { break-after: avoid; }
-}
+
+/* Personal cover: upstream editorial system, paired with an interactive badge. */
+.cover-with-badge{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.95fr);gap:32px;align-items:center}.cover-copy{padding:42px 0}.cover-copy .cover-name{font-size:clamp(54px,8.2vw,125px);line-height:.88}.cover-native{font-family:Arial,sans-serif;font-size:14px;letter-spacing:.02em;margin-top:22px;color:var(--foreground)}.cover-badge{min-width:0}.dark{--primary:#d96832;--ring:#d96832;--primary-foreground:#100c09}html{scroll-padding-top:80px}
+@font-face{font-family:Obel;src:url('/fonts/obel/ObelMono-VF.woff2') format('woff2');font-weight:100 900;font-display:swap}
+@media(max-width:750px){.cover-with-badge{grid-template-columns:1fr;gap:0}.cover-copy{padding:28px 0 0}.cover-copy .cover-name{font-size:clamp(50px,13.5vw,90px);line-height:.9}.cover-copy .cover-name>span{display:inline!important;margin-right:.12em}.cover-badge{margin-top:-8px}.cover-copy .cover-name>span:first-child{font-weight:300}.cover-copy>p:not(.label){max-width:100%}}

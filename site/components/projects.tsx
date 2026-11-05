@@ -2,177 +2,259 @@
 
 import * as React from "react"
 import Link from "next/link"
-import Image from "next/image"
+
 import { useLanguage } from "./language-provider"
-import { getProjects } from "@/lib/profile"
-import { Github, Eye, ArrowUpRight } from "lucide-react"
+import { getProjects, type Project } from "@/lib/profile"
+import { Badge } from "@/components/ui/badge"
+import { Button } from "@/components/ui/button"
 import {
   Dialog,
   DialogContent,
+  DialogDescription,
+  DialogHeader,
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog"
+import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { ScrambleText } from "@/components/scramble-text"
+
+type FilterKey = "all" | "web" | "system" | "game"
 
 export function Projects() {
   const { language, t } = useLanguage()
-  const [filter, setFilter] = React.useState<"all" | "web" | "system" | "game">("all")
+  const vi = language === "vi"
 
+  const [filter, setFilter] = React.useState<FilterKey>("all")
   const projects = getProjects(language)
 
   const filteredProjects =
-    filter === "all" ? projects : projects.filter((p) => p.category === filter)
+    filter === "all"
+      ? projects
+      : projects.filter((project) => project.category === filter)
+
+  const filters: Array<{ key: FilterKey; label: string }> = [
+    { key: "all", label: vi ? "Tất cả" : "All" },
+    { key: "web", label: vi ? "Ứng dụng Web" : "Web" },
+    { key: "system", label: vi ? "Hệ thống" : "Systems" },
+    { key: "game", label: vi ? "Trò chơi" : "Games" },
+  ]
 
   return (
-    <section id="projects" className="space-y-6 scroll-mt-20">
-      {/* Section Header */}
-      <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2 border-b border-border/60 pb-3">
-        <div>
-          <h2 className="text-sm font-bold tracking-wider text-foreground uppercase font-mono">
-            {t.projectHeading}
-          </h2>
-          <p className="text-xs text-muted-foreground mt-0.5">
-            {t.projectIntro}
-          </p>
-        </div>
+    <div className="space-y-5">
+      <div className="flex flex-wrap items-end justify-between gap-4">
+        <p className="label">
+          {vi ? "Mục lục" : "Index"} /{" "}
+          {String(filteredProjects.length).padStart(2, "0")}{" "}
+          {vi ? "dự án" : "entries"}
+        </p>
 
-        {/* Minimal Filters */}
-        <div className="flex items-center gap-1 font-mono text-xs">
-          {([
-            { key: "all", label: t.all },
-            { key: "web", label: t.web },
-            { key: "system", label: t.system },
-            { key: "game", label: t.game },
-          ] as const).map((item) => (
-            <button
-              key={item.key}
-              type="button"
-              onClick={() => setFilter(item.key)}
-              aria-pressed={filter === item.key}
-              className={`px-2 py-0.5 rounded text-xs transition-colors cursor-pointer ${
-                filter === item.key
-                  ? "bg-foreground text-background font-semibold"
-                  : "text-muted-foreground hover:text-foreground"
-              }`}
-            >
-              {item.label}
-            </button>
-          ))}
+        <div className="no-scrollbar -mx-1 w-full min-w-0 overflow-x-auto px-1 sm:mx-0 sm:w-auto sm:px-0">
+          <Tabs
+            value={filter}
+            onValueChange={(value) => setFilter(value as FilterKey)}
+          >
+            <TabsList aria-label="Filter projects by category">
+              {filters.map((item) => {
+                const count =
+                  item.key === "all"
+                    ? projects.length
+                    : projects.filter((p) => p.category === item.key).length
+
+                return (
+                  <TabsTrigger
+                    key={item.key}
+                    value={item.key}
+                    className="gap-2 text-[11px]"
+                  >
+                    <span>{item.label}</span>
+                    <span className="font-mono text-[9px] text-muted-foreground">
+                      {count}
+                    </span>
+                  </TabsTrigger>
+                )
+              })}
+            </TabsList>
+          </Tabs>
         </div>
       </div>
 
-      {/* Flat Projects List (Zero Box, Pure Content) */}
-      <div className="divide-y divide-border/40">
-        {filteredProjects.map((project) => (
+      <div className="divide-y divide-border border-y border-border">
+        {filteredProjects.map((project, index) => (
           <article
             key={project.id}
-            className="py-5 first:pt-0 space-y-2.5"
+            className="group grid grid-cols-1 gap-4 py-6 transition-colors md:grid-cols-[100px_minmax(0,1fr)_auto] md:items-start md:gap-8"
           >
-            {/* Header Row: Title, Period, Links */}
-            <div className="flex flex-wrap items-baseline justify-between gap-2">
-              <div className="flex items-center gap-2">
-                <h3 className="font-bold text-sm sm:text-base text-foreground hover:text-primary transition-colors">
-                  {project.title}
+            {/* Index & Category */}
+            <div className="space-y-1">
+              <span className="font-mono text-[11px] font-medium text-primary">
+                {String(index + 1).padStart(2, "0")} / {project.category.toUpperCase()}
+              </span>
+              {project.period && (
+                <p className="label">{project.period}</p>
+              )}
+            </div>
+
+            {/* Title, Role & Summary */}
+            <div className="space-y-3 min-w-0">
+              <div>
+                <h3 className="font-mono text-[17px] font-medium leading-tight tracking-[-0.02em] text-foreground sm:text-[19px]">
+                  <ScrambleText text={project.title} />
                 </h3>
+                <p className="label label-accent mt-1.5">{project.role}</p>
               </div>
 
-              <div className="flex items-center gap-3 font-mono text-xs">
-                <span className="text-muted-foreground">{project.period}</span>
-                <div className="flex items-center gap-2">
-                  {project.live && (
-                    <Link
-                      href={project.live}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-0.5 text-foreground hover:text-primary font-medium transition-colors"
-                      title={t.live}
+              <p className="max-w-2xl text-[12px] leading-relaxed text-muted-foreground">
+                {project.summary}
+              </p>
+
+              {/* Highlights */}
+              <ul className="space-y-1 pt-1">
+                {project.highlights.map((highlight, idx) => (
+                  <li
+                    key={idx}
+                    className="flex items-start gap-2 text-[11px] leading-relaxed text-foreground/80"
+                  >
+                    <span
+                      aria-hidden="true"
+                      className="mt-0.5 shrink-0 text-primary"
                     >
-                      <span>{t.live}</span>
-                      <ArrowUpRight className="w-3 h-3" />
-                    </Link>
-                  )}
-                  {project.github && (
-                    <Link
-                      href={project.github}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-0.5 text-muted-foreground hover:text-foreground transition-colors"
-                      title={project.id === "csvc" ? t.private : t.code}
-                    >
-                      <Github className="w-3 h-3" />
-                      <span>{project.id === "csvc" ? t.private : t.code}</span>
-                    </Link>
-                  )}
-                </div>
-              </div>
-            </div>
+                      +
+                    </span>
+                    <span>{highlight}</span>
+                  </li>
+                ))}
+              </ul>
 
-            {/* Role */}
-            <p className="font-mono text-xs text-primary font-medium">
-              {project.role}
-            </p>
-
-            {/* Summary */}
-            <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">
-              {project.summary}
-            </p>
-
-            {/* Technical Highlights */}
-            <div className="space-y-1 pt-0.5">
-              {project.highlights.map((item, idx) => (
-                <div
-                  key={idx}
-                  className="flex items-start gap-2 text-xs text-foreground/85 font-mono"
-                >
-                  <span className="text-primary select-none">›</span>
-                  <span className="leading-normal font-sans sm:font-mono">{item}</span>
-                </div>
-              ))}
-            </div>
-
-            {/* Tech Stack & Optional Preview */}
-            <div className="flex flex-wrap items-center justify-between gap-2 pt-1">
-              <div className="flex flex-wrap gap-1">
+              {/* Tech Badges */}
+              <div className="flex flex-wrap gap-1.5 pt-2">
                 {project.tech.map((t) => (
-                  <span
+                  <Badge
                     key={t}
-                    className="font-mono text-[11px] px-1.5 py-0.2 rounded bg-muted/50 text-muted-foreground"
+                    variant="outline"
+                    className="border-border/70 text-[10px]"
                   >
                     {t}
-                  </span>
+                  </Badge>
                 ))}
               </div>
+            </div>
 
-              {project.image && (
-                <Dialog>
-                  <DialogTrigger asChild>
-                    <button
-                      type="button"
-                      className="inline-flex items-center gap-1 text-[11px] font-mono text-primary hover:underline transition-colors cursor-pointer py-0.5"
-                    >
-                      <Eye className="w-3 h-3" />
-                      <span>{t.preview}</span>
-                    </button>
-                  </DialogTrigger>
-                  <DialogContent className="max-w-2xl p-4 bg-card border border-border">
-                    <DialogTitle className="text-xs font-mono mb-2">
+            {/* Actions / Links */}
+            <div className="flex flex-wrap items-center gap-2 pt-2 md:flex-col md:items-end md:pt-0">
+              {project.live && (
+                <Button variant="outline" size="sm" asChild>
+                  <Link
+                    href={project.live}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {vi ? "Trải nghiệm" : "Live"} ↗
+                  </Link>
+                </Button>
+              )}
+
+              {project.github && (
+                <Button variant="ghost" size="sm" asChild>
+                  <Link
+                    href={project.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    GitHub ↗
+                  </Link>
+                </Button>
+              )}
+
+              <Dialog>
+                <DialogTrigger asChild>
+                  <Button variant="ghost" size="sm" className="label text-[10px]">
+                    {vi ? "Chi tiết" : "Inspect"}
+                  </Button>
+                </DialogTrigger>
+                <DialogContent className="max-w-xl">
+                  <DialogHeader>
+                    <div className="flex items-center gap-2">
+                      <span className="label text-primary">
+                        {project.category.toUpperCase()}
+                      </span>
+                      {project.period && (
+                        <span className="label">· {project.period}</span>
+                      )}
+                    </div>
+                    <DialogTitle className="font-mono text-xl font-medium tracking-tight mt-1">
                       {project.title}
                     </DialogTitle>
-                    <div className="relative aspect-[16/10] w-full overflow-hidden rounded-md bg-muted border border-border/50">
-                      <Image
-                        src={project.image}
-                        alt={project.title}
-                        fill
-                        sizes="(max-width: 768px) 100vw, 700px"
-                        className="object-contain"
-                      />
+                    <DialogDescription className="label label-accent mt-0.5">
+                      {project.role}
+                    </DialogDescription>
+                  </DialogHeader>
+
+                  <div className="space-y-4 pt-3">
+                    <p className="text-xs leading-relaxed text-muted-foreground">
+                      {project.summary}
+                    </p>
+
+                    <div>
+                      <h4 className="label mb-2">
+                        {vi ? "Điểm nổi bật kỹ thuật" : "Technical Highlights"}
+                      </h4>
+                      <ul className="space-y-1.5">
+                        {project.highlights.map((h, i) => (
+                          <li
+                            key={i}
+                            className="flex items-start gap-2 text-xs leading-relaxed text-foreground/90"
+                          >
+                            <span className="text-primary shrink-0">+</span>
+                            <span>{h}</span>
+                          </li>
+                        ))}
+                      </ul>
                     </div>
-                  </DialogContent>
-                </Dialog>
-              )}
+
+                    <div>
+                      <h4 className="label mb-2">
+                        {vi ? "Công nghệ sử dụng" : "Technology Stack"}
+                      </h4>
+                      <div className="flex flex-wrap gap-1.5">
+                        {project.tech.map((t) => (
+                          <Badge key={t} variant="secondary" className="text-xs">
+                            {t}
+                          </Badge>
+                        ))}
+                      </div>
+                    </div>
+
+                    <div className="flex items-center gap-3 pt-3 border-t border-border">
+                      {project.live && (
+                        <Button asChild>
+                          <Link
+                            href={project.live}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
+                            {vi ? "Trải nghiệm sản phẩm" : "Open Live System"} ↗
+                          </Link>
+                        </Button>
+                      )}
+                      {project.github && (
+                        <Button variant="outline" asChild>
+                          <Link
+                            href={project.github}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
+                            GitHub Repository ↗
+                          </Link>
+                        </Button>
+                      )}
+                    </div>
+                  </div>
+                </DialogContent>
+              </Dialog>
             </div>
           </article>
         ))}
       </div>
-    </section>
+    </div>
   )
 }

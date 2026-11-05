@@ -2,6 +2,10 @@
 
 Website được phát triển trực tiếp từ bản clone của [qminh77/profile](https://github.com/qminh77/profile), giữ bố cục, CSS và nền tảng component của mẫu. Thông tin, ảnh chân dung, CV và dự án được thay bằng nội dung của Ưng Nhựt Khang. Xem nguồn tham khảo và commit gốc trong `site/UPSTREAM.md`.
 
+## Giao diện hiện tại
+
+Bố cục editorial từ qminh77/profile (b1d6f29), font Obel Mono và thẻ lanyard 3D tương tác ở trang đầu. Ảnh thẻ giữ màu gốc, tỷ lệ dọc 4:6; có thể kéo và bấm để lật xem mặt sau. Tông đen, đỏ trầm, cam cháy. Toolkit và cả hai CV PDF có Neon trong mục Databases. `/lab/` dùng chung giao diện với trang chính.
+
 ## Nội dung
 
 - Mặc định tiếng Anh ngay từ HTML ban đầu khi mở trang. Nút VI/EN chuyển toàn bộ nội dung và cập nhật `?lang=vi` / `?lang=en`; đường dẫn có ngôn ngữ rõ ràng được ưu tiên.

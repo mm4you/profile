@@ -1,200 +1,288 @@
 "use client"
 
 import * as React from "react"
-import Image from "next/image"
+import Link from "next/link"
+
+import { site } from "@/lib/site"
 import { useLanguage } from "./language-provider"
-import { CopyEmail } from "./copy-email"
-import { asset } from "@/lib/profile"
-import {
-  Download,
-  Github,
-  Mail,
-  Phone,
-  Check,
-  ArrowUpRight,
-  GitCommit,
-  BookOpen,
-} from "lucide-react"
+import { Button } from "@/components/ui/button"
+import { BinaryField } from "@/components/binary-field"
+import { CodeRain } from "@/components/code-rain"
+import { LocalTime } from "@/components/local-time"
+import { HeroLanyard } from "@/components/hero-lanyard"
 
 export function Hero() {
-  const { t } = useLanguage()
-  const [graphError, setGraphError] = React.useState(false)
-  const pinnedRepos = [
-    { name: 'ielts', desc: t.repoIelts, lang: 'TypeScript', langColor: '#3178c6', url: 'https://github.com/mm4you/ielts' },
-    { name: 'hackathon', desc: t.repoPort, lang: 'TypeScript', langColor: '#3178c6', url: 'https://github.com/mm4you/hackathon' },
-    { name: 'drive-music', desc: t.repoMusic, lang: 'TypeScript', langColor: '#3178c6', url: 'https://github.com/mm4you/drive-music' },
-    { name: 'csvc-umt', desc: t.repoCsvc, lang: t.private, langColor: '#8b949e', url: 'https://github.com/qminh77/csvc-umt' },
-  ]
+  const { language } = useLanguage()
+  const vi = language === "vi"
+
+  const [copied, setCopied] = React.useState(false)
+  const timeout = React.useRef<ReturnType<typeof setTimeout> | null>(null)
+
+  React.useEffect(() => {
+    return () => {
+      if (timeout.current) clearTimeout(timeout.current)
+    }
+  }, [])
+
+  const copyEmail = async () => {
+    try {
+      await navigator.clipboard.writeText(site.email)
+      setCopied(true)
+
+      if (timeout.current) clearTimeout(timeout.current)
+      timeout.current = setTimeout(() => setCopied(false), 2200)
+    } catch {
+      setCopied(false)
+    }
+  }
+
+  const trackPointer = (event: React.PointerEvent<HTMLElement>) => {
+    const rect = event.currentTarget.getBoundingClientRect()
+    event.currentTarget.style.setProperty(
+      "--spot-x",
+      `${event.clientX - rect.left}px`
+    )
+    event.currentTarget.style.setProperty(
+      "--spot-y",
+      `${event.clientY - rect.top}px`
+    )
+  }
+
+  const cvHref = vi ? "/cv-ung-nhut-khang.pdf" : "/cv-ung-nhut-khang-en.pdf"
 
   return (
-    <section className="space-y-6 pt-1">
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-start">
-        {/* 1. LEFT ZONE: PROFILE IDENTITY & DIRECT ACTIONS */}
-        <div className="lg:col-span-5 space-y-4">
-          <div className="flex items-start gap-4">
-            {/* Portrait Image (Balanced, Flat, Golden Ratio) */}
-            <div className="relative w-24 h-32 shrink-0 overflow-hidden rounded-xl border border-border/70 bg-muted/20">
-              <Image
-                src={asset("profile.jpg")}
-                alt="Ưng Nhựt Khang"
-                fill
-                sizes="120px"
-                priority
-                className="object-cover object-center"
-              />
-            </div>
+    <section
+      id="top"
+      aria-labelledby="cover-title"
+      onPointerMove={trackPointer}
+      className="hero-spotlight relative overflow-hidden border-b border-border"
+    >
+      <BinaryField />
+      <CodeRain className="opacity-80" />
 
-            {/* Name, Handle & Title */}
-            <div className="space-y-1 min-w-0">
-              <div className="flex items-center gap-2">
-                <h1 className="text-xl sm:text-2xl font-bold tracking-tight text-foreground truncate">
-                  Ưng Nhựt Khang
-                </h1>
-              </div>
+      <div className="shell relative z-10">
+        {/* Top Meta Bar */}
+        <div className="hero-in flex flex-wrap items-center justify-between gap-x-4 gap-y-1 border-b border-border/70 py-3">
+          <p className="label">
+            ( F/01 ){" "}
+            <span className="text-foreground">
+              {vi ? "Hồ sơ cá nhân" : "Portfolio"}
+            </span>{" "}
+            · 2026
+          </p>
+          <p className="label flex items-center gap-2">
+            <span
+              aria-hidden="true"
+              className="status-dot inline-block size-1.5 bg-primary"
+            />
+            HCMC <LocalTime /> <span className="hidden sm:inline">· GMT+7</span>
+          </p>
+        </div>
 
-              <p className="text-xs sm:text-sm font-medium text-foreground/90">
-                {t.role}
-              </p>
-
-              <p className="text-[11px] font-mono text-muted-foreground">
-                {t.department}
-              </p>
-
-              {/* Status Indicator */}
-              <div className="pt-1 font-mono text-xs flex items-center gap-1.5 text-emerald-600 dark:text-emerald-400">
-                <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse shrink-0" />
-                <span>{t.available}</span>
-              </div>
-            </div>
-          </div>
-
-          {/* Bio Text (Flat, professional) */}
-          <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">
-            {t.bio}
+        {/* Hero Title & 3D Lanyard Staging */}
+        <div className="relative pt-8 lg:pt-12">
+          <p className="label label-accent hero-in hero-in-1">
+            00 / {vi ? "Bìa hồ sơ" : "Cover"}
           </p>
 
-          {/* Action Buttons */}
-          <div className="flex flex-wrap items-center gap-2 pt-1 font-mono text-xs">
-            <a
-              href={asset(t.pdfFile)}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md bg-foreground text-background hover:opacity-90 transition-opacity font-semibold"
-            >
-              <Download className="w-3.5 h-3.5" />
-              <span>{t.download}</span><span className="sr-only"> ({t.pdfLanguage})</span>
-            </a>
+          <h1
+            id="cover-title"
+            className="cover-name hero-in hero-in-2 mt-4 lg:mt-6"
+          >
+            <span className="block font-extralight">Ưng</span>
+            <span className="block font-semibold">
+              Nhựt Khang<span className="text-primary">.</span>
+            </span>
+          </h1>
 
-            <CopyEmail />
+          {/* Desktop 3D Lanyard: Positioned elegantly at the top right of the hero */}
+          <div
+            aria-label="3D Lanyard Personal Badge"
+            className="hero-in hero-in-3 hidden lg:absolute lg:right-0 lg:top-[-10px] lg:block lg:h-[480px] lg:w-[380px] xl:h-[530px] xl:w-[430px]"
+          >
+            <HeroLanyard />
+            <p className="label mt-2 flex items-center justify-between px-1 text-[9px]">
+              <span className="flex items-center gap-1.5">
+                <span
+                  aria-hidden="true"
+                  className="status-dot inline-block size-1.5 bg-primary"
+                />
+                {vi ? "Kéo hoặc lật thẻ" : "Drag or flip card"}
+              </span>
+              <span>3D PHY · REACT BITS</span>
+            </p>
+          </div>
 
-            <a
-              href="tel:+84393331566"
-              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md border border-border/70 hover:bg-muted/50 text-foreground transition-colors"
-            >
-              <Phone className="w-3.5 h-3.5 text-muted-foreground" />
-              <span>0393 331 566</span>
-            </a>
-
-            <a
-              href="https://github.com/mm4you"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md border border-border/70 hover:bg-muted/50 text-foreground transition-colors"
-            >
-              <Github className="w-3.5 h-3.5 text-muted-foreground" />
-              <span>@mm4you</span>
-            </a>
+          {/* Mobile 3D Lanyard: Dedicated responsive frame, natural flow without scale hack */}
+          <div
+            aria-label="3D Lanyard Personal Badge"
+            className="hero-in hero-in-3 relative my-6 block h-[330px] w-full overflow-hidden border border-border/60 bg-secondary/30 sm:h-[380px] lg:hidden"
+          >
+            <HeroLanyard />
+            <div className="label pointer-events-none absolute bottom-2 inset-x-2 flex items-center justify-between px-2 text-[8px] bg-background/80 py-1 backdrop-blur-sm border border-border/40">
+              <span className="flex items-center gap-1.5">
+                <span
+                  aria-hidden="true"
+                  className="status-dot inline-block size-1.5 bg-primary"
+                />
+                {vi ? "Chạm lật · Kéo thẻ" : "Tap to flip · Drag card"}
+              </span>
+              <span>3D LANYARD</span>
+            </div>
           </div>
         </div>
 
-        {/* 2. RIGHT ZONE: GITHUB COMMAND CENTER */}
-        <div
-          id="github"
-          className="lg:col-span-7 space-y-3.5 pt-4 lg:pt-0 border-t lg:border-t-0 lg:border-l border-border/60 lg:pl-8 scroll-mt-20"
-        >
-          {/* Header */}
-          <div className="flex items-baseline justify-between gap-2 border-b border-border/40 pb-2">
-            <div className="flex items-center gap-2">
-              <Github className="w-4 h-4 text-foreground" />
-              <h2 className="font-mono text-xs font-bold uppercase tracking-wider text-foreground">
-                {t.githubHeading}
-              </h2>
-              <span className="text-muted-foreground font-mono text-xs hidden sm:inline">@mm4you</span>
-            </div>
+        {/* Bio, Action Buttons & Spec Deck */}
+        <div className="mt-8 grid gap-8 border-t border-border pt-6 lg:mt-12 lg:grid-cols-12 lg:gap-8">
+          <div className="lg:col-span-6">
+            <p className="max-w-xl text-[13px] leading-relaxed text-muted-foreground sm:text-sm">
+              {vi ? (
+                <>
+                  Sinh viên Kỹ thuật phần mềm tại UMT, thực hành phát triển web
+                  với{" "}
+                  <span className="text-foreground">
+                    React, Next.js, TypeScript
+                  </span>
+                  , cơ sở dữ liệu và tích hợp API. Chủ động tự học và hoàn thiện
+                  các sản phẩm chạy được phục vụ người dùng thật.
+                </>
+              ) : (
+                <>
+                  Software Engineering student at UMT building modern{" "}
+                  <span className="text-foreground">
+                    full-stack web applications
+                  </span>{" "}
+                  and interactive tools with{" "}
+                  <span className="text-foreground">
+                    React, Next.js, TypeScript, and Supabase / PostgreSQL
+                  </span>
+                  . Independent learner focused on shipping clean, production-ready
+                  systems.
+                </>
+              )}
+            </p>
 
-            <a
-              href="https://github.com/mm4you"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="font-mono text-xs text-primary hover:underline inline-flex items-center gap-0.5"
-            >
-              <span>{t.viewAll}</span>
-              <ArrowUpRight className="w-3 h-3" />
-            </a>
-          </div>
-
-          {/* Flat Contribution Graph */}
-          <div className="space-y-1">
-            <div className="flex items-center justify-between text-[11px] font-mono text-muted-foreground">
-              <span className="flex items-center gap-1">
-                <GitCommit className="w-3 h-3 text-primary" />
-                <span>{t.contribution}</span>
+            <p className="label mt-4 flex flex-wrap items-center gap-x-3 gap-y-1">
+              <span>
+                {vi
+                  ? "Địa chỉ: Phường Cát Lái, TP.HCM"
+                  : `Based in ${site.location}`}
               </span>
-              <span>{t.publicActivity}</span>
-            </div>
+              <span aria-hidden="true" className="text-primary">
+                /
+              </span>
+              <span>
+                {vi
+                  ? "Đang tìm cơ hội thực tập 2026"
+                  : "Available for 2026 internship"}
+              </span>
+            </p>
 
-            <div className="overflow-x-auto py-1" hidden={graphError}>
-              <div className="min-w-[580px] p-2 rounded-md bg-muted/20 border border-border/40">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src={asset("github-activity.svg")}
-                  width={730}
-                  height={130}
-                  alt={t.graphAlt}
-                  onError={() => setGraphError(true)}
-                  className="w-full h-auto dark:invert dark:hue-rotate-180 opacity-90"
-                  loading="lazy"
-                />
-              </div>
+            {/* Direct Action Buttons */}
+            <div className="mt-6 flex flex-wrap items-center gap-2">
+              <Button asChild>
+                <Link
+                  href={cvHref}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {vi ? "Tải CV" : "Download CV"}{" "}
+                  <span aria-hidden="true">↓</span>
+                </Link>
+              </Button>
+
+              <Button variant="outline" type="button" onClick={copyEmail}>
+                {copied ? (
+                  <span className="text-primary">
+                    {vi ? "Đã sao chép" : "Copied"}
+                  </span>
+                ) : vi ? (
+                  "Sao chép email"
+                ) : (
+                  "Copy email"
+                )}
+              </Button>
+              <span className="sr-only" aria-live="polite">
+                {copied ? "Email copied to clipboard" : ""}
+              </span>
+
+              <Button variant="ghost" asChild>
+                <Link
+                  href={site.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  GitHub <span aria-hidden="true">↗</span>
+                </Link>
+              </Button>
             </div>
           </div>
 
-          {graphError && <a href="https://github.com/mm4you" target="_blank" rel="noopener noreferrer" className="text-xs text-primary hover:underline">{t.graphUnavailable} ↗</a>}
-
-          {/* Pinned Repos Grid (2-columns) */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 pt-1">
-            {pinnedRepos.map((repo, idx) => (
-              <a
-                key={idx}
-                href={repo.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group p-2.5 rounded-md hover:bg-muted/40 transition-colors border border-border/40 space-y-1"
-              >
-                <div className="flex items-center justify-between gap-1">
-                  <div className="flex items-center gap-1.5 min-w-0">
-                    <BookOpen className="w-3.5 h-3.5 text-muted-foreground group-hover:text-primary transition-colors shrink-0" />
-                    <span className="font-mono text-xs font-bold text-foreground group-hover:text-primary transition-colors truncate">
-                      {repo.name}
-                    </span>
-                  </div>
-                  <ArrowUpRight className="w-3 h-3 text-muted-foreground group-hover:text-primary transition-colors shrink-0" />
-                </div>
-
-                <p className="text-[11px] text-muted-foreground line-clamp-2 leading-snug">
-                  {repo.desc}
-                </p>
-
-                <div className="flex items-center gap-1.5 font-mono text-[10px] text-muted-foreground pt-0.5">
-                  <span
-                    className="w-2 h-2 rounded-full shrink-0"
-                    style={{ backgroundColor: repo.langColor }}
-                  />
-                  <span>{repo.lang}</span>
-                </div>
-              </a>
-            ))}
+          <div className="hidden lg:col-span-2 lg:col-start-7 lg:flex lg:items-end">
+            <p className="label pb-1 [writing-mode:vertical-rl] rotate-180">
+              {vi ? "Cuộn xuống xem nội dung ↓" : "Scroll to index / 01 Profile ↓"}
+            </p>
           </div>
+
+          {/* Micro Specs List */}
+          <dl className="spec-list lg:col-span-4 lg:col-start-9">
+            <div className="spec-row">
+              <dt>{vi ? "Khu vực" : "Base"}</dt>
+              <dd>Ho Chi Minh City, VN</dd>
+            </div>
+            <div className="spec-row">
+              <dt>{vi ? "Trọng tâm" : "Focus"}</dt>
+              <dd>Web Dev / Frontend / Full-stack</dd>
+            </div>
+            <div className="spec-row">
+              <dt>{vi ? "Học vấn" : "Education"}</dt>
+              <dd>UMT · B.S. IT, 2024—2028</dd>
+            </div>
+            <div className="spec-row">
+              <dt>{vi ? "Trạng thái" : "Status"}</dt>
+              <dd className="text-primary">
+                {vi ? "Sẵn sàng thực tập 2026" : "Open for Internship"}
+              </dd>
+            </div>
+          </dl>
+        </div>
+
+        {/* Stat metrics */}
+        <dl className="mt-8 grid grid-cols-2 gap-x-6 gap-y-5 border-t border-border py-5 md:grid-cols-4">
+          <div className="group">
+            <dt className="label">{vi ? "Dự án tiêu biểu" : "Selected systems"}</dt>
+            <dd className="stat-value mt-2 transition-colors group-hover:text-primary">
+              06
+            </dd>
+          </div>
+          <div className="group">
+            <dt className="label">{vi ? "Thành tích Hackathon" : "Hackathon distinction"}</dt>
+            <dd className="stat-value mt-2 transition-colors group-hover:text-primary">
+              Top 20<span className="text-primary"> · Digiport</span>
+            </dd>
+          </div>
+          <div className="group">
+            <dt className="label">{vi ? "Chuyên ngành" : "Undergraduate major"}</dt>
+            <dd className="stat-value mt-2 transition-colors group-hover:text-primary">
+              SE <span className="text-primary">@ UMT</span>
+            </dd>
+          </div>
+          <div className="group">
+            <dt className="label">{vi ? "Kho mã nguồn" : "Repositories"}</dt>
+            <dd className="stat-value mt-2 transition-colors group-hover:text-primary">
+              12<span className="text-primary">+</span>
+            </dd>
+          </div>
+        </dl>
+
+        {/* Footer label strip */}
+        <div className="label flex flex-wrap items-center justify-between gap-x-6 gap-y-1 border-t border-border/70 py-2.5">
+          <span>(* 2026 &gt;</span>
+          <span aria-hidden="true">{"//"}</span>
+          <span>Web Developer · Software Engineering</span>
+          <span aria-hidden="true">[ ]</span>
+          <span className="hidden sm:inline">Obel Mono 1.001</span>
+          <span>/ SIL OFL 1.1 )</span>
         </div>
       </div>
     </section>

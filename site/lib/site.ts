@@ -1,0 +1,4 @@
+export const site={name:'Ưng Nhựt Khang',shortName:'khang.dev',role:'Web Developer',focus:'Software Engineering',location:'Ho Chi Minh City, Vietnam',email:'contact@ungnhutkhang.id.vn',phone:'0393 331 566',phoneHref:'tel:+84393331566',github:'https://github.com/mm4you',githubHandle:'@mm4you',cv:'/cv-ung-nhut-khang-en.pdf',university:'University of Management and Technology (UMT)'} as const
+export const chapters=[{id:'profile',no:'01',label:'Profile'},{id:'work',no:'02',label:'Work'},{id:'achievement',no:'03',label:'Achievement'},{id:'toolkit',no:'04',label:'Toolkit'},{id:'education',no:'05',label:'Education'},{id:'contact',no:'06',label:'Contact'}] as const
+export type ChapterId=(typeof chapters)[number]['id']
+export function chapterNumber(id:ChapterId){return chapters.find(c=>c.id===id)?.no??'00'}
