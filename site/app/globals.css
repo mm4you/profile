@@ -796,3 +796,11 @@ html{scroll-padding-top:80px}
 html[lang="vi"] { --font-editorial: var(--font-vietnamese); }
 .font-vietnamese { font-family: var(--font-vietnamese), monospace; font-feature-settings: normal; }
 .cover-name { font-family: var(--font-obel), monospace; }
+
+/* Directional reveals and decorative depth adapted from qminh77/profile. */
+.reveal-left{transform:translate3d(-24px,0,0)}
+.reveal-right{transform:translate3d(24px,0,0)}
+.reveal-fade{transform:none}
+.reveal.is-visible{transform:none}
+[data-parallax]{transform:translate3d(0,var(--parallax-y,0px),0);will-change:transform}
+@media(prefers-reduced-motion:reduce){[data-parallax]{transform:none;will-change:auto}}

@@ -51,9 +51,9 @@ export function ScrambleText({ text, className }: ScrambleTextProps) {
   return (
     <span
       className={className}
-      onPointerEnter={scramble}
+      onPointerEnter={(event) => { if (event.pointerType === "mouse") scramble() }}
       onFocus={scramble}
-      tabIndex={-1}
+      tabIndex={0}
     >
       <span aria-hidden="true">{display}</span>
       <span className="sr-only">{text}</span>

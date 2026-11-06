@@ -40,27 +40,31 @@ function drawCardFront(g: CanvasRenderingContext2D, img: HTMLImageElement | null
   g.textAlign='right';g.fillStyle='#2fc1e3';g.fillText('UMT / SE',964,1356);g.textAlign='left'
   g.strokeStyle='#33434d';g.beginPath();g.moveTo(60,1380);g.lineTo(964,1380);g.stroke();g.fillStyle='#a0b5c0';g.font='400 22px Obel,monospace';g.fillText('github.com/mm4you',60,1410)
 }
-function drawCardBack(g:CanvasRenderingContext2D,vi:boolean){
+function drawCardBack(g:CanvasRenderingContext2D,vi:boolean,logo:HTMLImageElement|null){
   const mono='Obel, monospace'
+  const rule=(y:number)=>{g.strokeStyle='#33434d';g.lineWidth=2;g.beginPath();g.moveTo(60,y);g.lineTo(964,y);g.stroke()}
   g.fillStyle='#10181d';g.fillRect(0,0,1024,1440)
   g.strokeStyle='#33434d';g.lineWidth=2;g.strokeRect(24,24,976,1392)
   g.fillStyle='#2fc1e3';g.fillRect(24,66,7,62)
   g.fillStyle='#b4c3ca';g.font=`500 23px ${mono}`;g.fillText('KHANG / PERSONAL EDITION',60,104)
   g.textAlign='right';g.fillStyle='#2fc1e3';g.fillText('02 / 02',964,104);g.textAlign='left'
-  g.fillStyle='#edf3f5';g.font=`350 280px ${mono}`;g.fillText('MM',50,454)
-  g.fillStyle='#2fc1e3';g.font=`650 260px ${mono}`;g.fillText('4YOU.',50,700)
-  g.strokeStyle='#33434d';g.beginPath();g.moveTo(60,780);g.lineTo(964,780);g.stroke()
-  g.fillStyle='#edf3f5';g.font='600 50px Arial,sans-serif';g.fillText('Ưng Nhựt Khang',60,872)
-  g.fillStyle='#b4c3ca';g.font=`400 27px ${mono}`;g.fillText('WEB DEVELOPER / UMT',60,927)
-  g.font='400 29px Arial,sans-serif'
-  const bio=vi?['Tự phát triển ứng dụng web,','công cụ học tập và trò chơi.']:['Building web apps, learning tools','and little browser games.']
-  bio.forEach((line,i)=>g.fillText(line,60,1000+i*42))
-  g.fillStyle='#2fc1e3';g.font=`500 23px ${mono}`;g.fillText('REACT / NEXT.JS / TYPESCRIPT',60,1130)
-  g.fillStyle='#b4c3ca';g.font=`400 23px ${mono}`;g.fillText('POSTGRESQL / SUPABASE / NEON',60,1172)
-  g.strokeStyle='#33434d';g.beginPath();g.moveTo(60,1220);g.lineTo(964,1220);g.stroke()
+  g.fillStyle='#2fc1e3';g.font=`500 24px ${mono}`;g.fillText('MM4YOU / WEB DEVELOPER',60,204)
+  g.fillStyle='#edf3f5';g.font=`600 156px ${mono}`;g.fillText('KHANG.',50,356)
+  g.font='600 55px Arial,sans-serif';g.fillText('Ưng Nhựt Khang',60,432)
+  g.fillStyle='#a7bac4';g.font='400 31px Arial,sans-serif'
+  const bio=vi?['Mình làm ứng dụng web, công cụ học tập','và những trò chơi nhỏ trên trình duyệt.']:['I build web apps, learning tools','and little browser games.']
+  bio.forEach((line,i)=>g.fillText(line,60,518+i*43))
+  rule(616)
+  g.fillStyle='#859da9';g.font=`500 23px ${mono}`;g.fillText('SELECTED WORK / 04',60,672)
+  const works=['IELTS Vocabulary',vi?'Vô Tri — Trò chơi nhỏ':'Vo Tri — Tiny Games',vi?'Thi Thố — Quiz trực tiếp':'Thi Tho — Live Quiz','InnovateX Smart Port']
+  works.forEach((title,i)=>{const y=744+i*66;g.fillStyle='#2fc1e3';g.font=`500 23px ${mono}`;g.fillText(`0${i+1}`,60,y);g.fillStyle='#edf3f5';g.font='500 35px Arial,sans-serif';g.fillText(title,140,y)})
+  g.fillStyle='#152129';g.fillRect(60,996,904,190)
+  if(logo?.complete&&logo.naturalWidth>0)g.drawImage(logo,88,1020,560,560*logo.naturalHeight/logo.naturalWidth)
+  g.fillStyle='#a7bac4';g.font=`400 22px ${mono}`;g.fillText('SOFTWARE ENGINEERING / 2024–2028',88,1156)
+  rule(1230)
   g.fillStyle='#edf3f5';g.font=`400 29px ${mono}`;g.fillText('contact@ungnhutkhang.id.vn',60,1290)
-  g.fillStyle='#b4c3ca';g.font=`400 26px ${mono}`;g.fillText('ungnhutkhang.id.vn',60,1340)
-  g.font=`500 20px ${mono}`;g.fillStyle='#8599a5';g.fillText('GITHUB / MM4YOU',60,1390);g.textAlign='right';g.fillText('HCMC, VN',964,1390);g.textAlign='left'
+  g.fillStyle='#2fc1e3';g.font=`500 27px ${mono}`;g.fillText('ungnhutkhang.id.vn',60,1342)
+  g.fillStyle='#8599a5';g.font=`400 20px ${mono}`;g.fillText('GITHUB / MM4YOU',60,1390);g.textAlign='right';g.fillText('HCMC, VN',964,1390);g.textAlign='left'
 }
 export default function Entry({ vi, onOpen, cardOnly=false }: EntryProps) {
   const [art, setArt] = useState<{ front: string; back: string; strap: string } | null>(null)
@@ -74,6 +78,8 @@ export default function Entry({ vi, onOpen, cardOnly=false }: EntryProps) {
     let alive = true
     const img = new Image()
     img.src = '/profile.jpg'
+    const logo = new Image()
+    logo.src = asset('umt-wordmark-dark.svg')
 
     const initArt = async () => {
       const obel = new FontFace('Obel', 'url(/fonts/obel/ObelMono-VF.woff2)', {weight:'100 900'})
@@ -81,6 +87,7 @@ export default function Entry({ vi, onOpen, cardOnly=false }: EntryProps) {
       try {
         await Promise.all([
           img.decode().catch(() => {}),
+          logo.decode().catch(() => {}),
           document.fonts?.load('600 28px "Obel Mono"').catch(() => {}),
           document.fonts?.load('600 28px Obel').catch(() => {}),
         ])
@@ -103,7 +110,7 @@ export default function Entry({ vi, onOpen, cardOnly=false }: EntryProps) {
         bc.width = 1024
         bc.height = 1440
         const bg = bc.getContext('2d')
-        if (bg) drawCardBack(bg, vi)
+        if (bg) drawCardBack(bg, vi, logo)
 
         setArt({
           front: fc.toDataURL('image/png'),

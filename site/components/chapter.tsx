@@ -33,7 +33,7 @@ export function Chapter({
       aria-labelledby={`${id}-title`}
       className={cn("chapter", className)}
     >
-      <aside className="chapter-rail">
+      <Reveal as="aside" className="chapter-rail" direction="left" delay={40}>
         <p className="chapter-index">
           {index} <span className="text-muted-foreground">/ 06</span>
         </p>
@@ -49,13 +49,13 @@ export function Chapter({
             </div>
           ))}
         </dl>
-      </aside>
+      </Reveal>
 
       <div className="chapter-body">
-        <span aria-hidden="true" className="chapter-watermark">
+        <span aria-hidden="true" className="chapter-watermark" data-parallax="0.32">
           {index}
         </span>
-        <Reveal className="chapter-content">{children}</Reveal>
+        <Reveal className="chapter-content" delay={90}>{children}</Reveal>
       </div>
     </section>
   )
