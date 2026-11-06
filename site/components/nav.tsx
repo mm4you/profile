@@ -75,7 +75,7 @@ export function Navbar() {
             <span className="font-mono text-[10px] font-medium uppercase tracking-[0.12em] text-foreground sm:text-[11px]">
               {site.shortName}
             </span>
-            <span aria-hidden="true" className="mx-1 font-mono text-sm text-muted-foreground/60">/</span>
+            <span aria-hidden="true" className="mx-1 font-mono text-sm text-muted-foreground/60">|</span>
             <img
               src={asset('umt-wordmark.svg')}
               alt="UMT School of Technology"
